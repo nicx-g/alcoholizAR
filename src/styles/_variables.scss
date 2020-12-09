@@ -1,0 +1,10 @@
+$colors: (
+    primary: #252a34,
+    secondary: #eaeaea,
+    tertiary: #ff2e63,
+    quaternary: #08d9d6,
+);
+
+h1{
+    background: map-get($colors, tertiary);
+}
