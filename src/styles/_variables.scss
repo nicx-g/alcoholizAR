@@ -5,6 +5,9 @@ $colors: (
     quaternary: #08d9d6,
 );
 
-h1{
-    background: map-get($colors, tertiary);
-}
+$breakpoints: (
+    xl: 1200px,
+    lg: 992px,
+    md: 768px,
+    sm: 576px
+);
