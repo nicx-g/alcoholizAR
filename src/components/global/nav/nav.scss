@@ -2,6 +2,10 @@
 
 header{
     background-color: map-get($map: $colors, $key: primary );    
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
 
 .nav{

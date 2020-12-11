@@ -1,12 +1,18 @@
 import React from 'react';
+import {useState} from 'react'
 
 import './nav.scss';
 import '../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
-import CartWidget from '../cartWidget/CartWidget'
-import Container from '../container/Container'
+import NavCart from '../NavCart/NavCart'
+import Container from '../Container/Container'
+import CartWidget from '../CartWidget/CartWidget'
 
-const nav = () => {
+const Nav = () => {
+
+    const [showCartWidget, setShowCartWidget] = useState(false)
+
     return (
+        <>
         <header>
             <Container>
                 <nav className="nav">
@@ -29,12 +35,15 @@ const nav = () => {
                         <div className="nav__actions__login">
                             <button>Ingresar</button>
                         </div>
-                        <CartWidget />
+                        <NavCart showHide={() => setShowCartWidget(!showCartWidget)} />
                     </div>
                 </nav>
             </Container>
         </header>
+        <CartWidget 
+        showHide={showCartWidget} />
+        </>
     )
 }
 
-export default nav;
+export default Nav;

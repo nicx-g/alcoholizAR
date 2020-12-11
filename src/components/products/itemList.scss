@@ -8,7 +8,7 @@
     transition: all .3s ease-out;
 
     &:hover{
-        transform: scale(1.01, 1.01);
+        box-shadow: 3px 3px 5px map-get($map: $colors, $key: primary);
     }
 
     &__image{
@@ -48,51 +48,83 @@
             margin: 0 auto;
         }
 
+        &-subText{
+            color: map-get($map: $colors, $key: secondary);
+            font-size: .8rem;
+            font-weight: 400;
+            margin: 0 auto 5px;
+        }
+
+        &-stockText{
+            color: map-get($map: $colors, $key: secondary);
+            font-size: .8rem;
+            font-weight: 400;
+            margin: 0 auto 5px;
+        }
+
+
         &__options{
+            align-items: center;
+            display: flex;
+            justify-content: center;
             margin: 15px 0;
 
-            &-item{
+            &-itemCount{
                 background-color: map-get($map: $colors, $key: primary);
                 border: 0;
-                border-radius: 50%;
+                border-radius: 0;
                 color: map-get($map: $colors, $key: secondary);
                 cursor: pointer;
-                font-size: 1rem;
+                font-size: 1.3rem;
                 font-weight: bold;
                 height: 40px;
-                margin: 0 10px;
                 outline: none;
                 position: relative;
+                transition: all .3s ease-in;
                 width: 40px;
+                z-index: 0;
 
-                &::before{
-                    border: 2px solid map-get($map: $colors, $key: tertiary);
-                    border-radius: 50%;
-                    content:"";
-                    height: 50px;
-                    left: -7px;
-                    position: absolute;
-                    top: -7px;
-                    opacity:0;
-                    transition: all .3s ease-in;
-                    transform: scale(0);
-                    width: 50px;
+                &:hover{
+                    color: map-get($map: $colors, $key: tertiary);
                 }
 
-                &:hover::before{
-                    height: 50px;
-                    opacity: 1;
-                    transition: ease-in all .3s;
-                    transform: scale(1);                        
-                }
+                &:nth-child(1){
+                    border-bottom-left-radius: 15px;
+                    border-top-left-radius: 15px;
+                    border-left: map-get($map: $colors, $key: tertiary) 2px solid;
+                    border-top: map-get($map: $colors, $key: tertiary) 2px solid;
+                    border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
 
-                &.active::before{
-                    height: 50px;
-                    opacity: 1;
-                    transition: ease-in all .3s;
-                    transform: scale(1);
+                    &.active{
+                        opacity: 0.2;
+                    }
                 }
+                &:nth-child(3){
+                    border-bottom-right-radius: 15px;
+                    border-top-right-radius: 15px;
+                    border-right: map-get($map: $colors, $key: tertiary) 2px solid;
+                    border-top: map-get($map: $colors, $key: tertiary) 2px solid;
+                    border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
 
+                    &.active{
+                        opacity: 0.2;
+                    }
+                }
+            }
+
+            &-itemCountInput{
+                border: 0;
+                border-top: map-get($map: $colors, $key: tertiary) 2px solid;
+                border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
+                border-radius: 0;
+                // box-shadow: none;
+                font-family: "Quicksand", sans-serif;
+                font-size: 1rem;
+                font-weight: 500;
+                height: 40px;
+                outline: none;
+                text-align: center;
+                width: 100%;
             }
         }
     }

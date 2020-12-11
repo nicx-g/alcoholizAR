@@ -1,15 +1,16 @@
 import './cartWidget.scss'
+import ItemList from '../../Products/ItemList'
 
-const CardWidget = () => {
-    return  (
-    <div className="nav__actions__cart">
-        <button>
-            <i className="fas fa-shopping-cart">
-                <span>0</span>
-            </i>
-        </button>
-    </div>
+const CartWidget = ({showHide}) => {
+    return (
+        <div 
+        className={`overlay ${showHide ? 'show' : 'hide'}`}>
+            <div 
+            className={`cartWidget ${showHide ? 'show' : 'hide'}`}>
+                <ItemList/>
+            </div>
+        </div>
     )
-};
+}
 
-export default CardWidget;
+export default CartWidget;
