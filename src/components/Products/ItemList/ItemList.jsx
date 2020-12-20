@@ -5,43 +5,38 @@ const ItemList = (props) => {
 
     const [cantidadProductos, setCantidadProductos] = useState(6)
 
-    const itemCountSuma = (e) => {
+    const itemCountSuma = () => {
 
-        if(cantidadProductos == props.stock) {
-            e.target.disabled = true;
-            e.target.classList.add('active')
+        if(cantidadProductos < props.stock) {
 
-            setTimeout(() => {
-                e.target.disabled = false;
-                e.target.classList.remove('active')
-            }, 1500);
+            setCantidadProductos( () => parseInt(cantidadProductos) + 6)
+            
         } else{
 
-            e.target.disabled = false
-            setCantidadProductos(() => {
-                return parseInt(cantidadProductos) + 6
-            })
+            return
         }
     }
 
-    const itemCountResta = (e) => {
+    const itemCountResta = () => {
 
-        if(cantidadProductos < 0 || cantidadProductos == 0) {
-            e.target.disabled = true;
-            e.target.classList.add('active')
+        if(cantidadProductos < 0 || cantidadProductos === 0) {
 
-            setTimeout(() => {
-                e.target.disabled = false;
-                e.target.classList.remove('active')
-            }, 1500);
-
+            return
+            
         } else{
 
-            e.target.disabled = false
-            setCantidadProductos(() => {
-                return parseInt(cantidadProductos) - 6
-            })
+            setCantidadProductos( () => parseInt(cantidadProductos) - 6)
         }
+    }
+
+    const [btnSuccess, setBtnSuccess] = useState(false)
+
+    const alternarSuccess = () => {
+        setBtnSuccess(true)
+        setTimeout(() => {
+            setBtnSuccess(false)
+        }, 3000)
+        
     }
 
     return (
@@ -56,10 +51,11 @@ const ItemList = (props) => {
             <div className="itemList__variants">
                 <span className="itemList__variants-text">¿Cuántas unidades?</span>
                 <span className="itemList__variants-subText">Sólo múltiplos de 6</span>
-                <span className="itemList__variants-stockText">Stock disponible: {props.stock}</span>
+                <span className="itemList__variants-stockText">Stock disponible: {props.stock} unidades</span>
                 <div className="itemList__variants__options">
                     <button className="itemList__variants__options-itemCount"
                     onClick={itemCountResta}
+                    disabled={cantidadProductos === 6 ? "disabled" : null}
                     >-</button>
 
                     <input className="itemList__variants__options-itemCountInput"
@@ -71,6 +67,7 @@ const ItemList = (props) => {
 
                     <button className="itemList__variants__options-itemCount"
                     onClick={itemCountSuma}
+                    disabled={cantidadProductos == props.stock ? "disabled" : null}
                     >+</button>
                 </div>
             </div>
@@ -78,7 +75,10 @@ const ItemList = (props) => {
                 <span>El precio es: ${props.precio}</span>
             </div>
             <div className="itemList__buy">
-                <button>Agregar al carrito</button>
+                <button
+                onClick={alternarSuccess}
+                className={btnSuccess ? "success" : ""}
+                >{btnSuccess ? "Agregado con éxito" : "Agregar al carrito"}</button>
             </div>
         </div>
     )

@@ -2,9 +2,9 @@ import React from 'react';
 import {useState} from 'react'
 
 import './nav.scss';
-import '../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
+import '../../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 import NavCart from '../NavCart/NavCart'
-import Container from '../Container/Container'
+import Container from '../../Container/Container'
 import CartWidget from '../CartWidget/CartWidget'
 
 const Nav = () => {

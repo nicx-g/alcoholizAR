@@ -1,8 +1,8 @@
 
-import Nav from './components/Global/Nav/Nav';
+import Nav from './components/Global/Navbar/Nav/Nav';
 import Container from './components/Global/Container/Container';
-import ItemListContainer from './components/Products/ItemListContainer';
-import ItemList from './components/Products/ItemList';
+import ItemListContainer from './components/Products/itemListContainer/ItemListContainer';
+import ItemList from './components/Products/ItemList/ItemList';
 
 function App() {
       

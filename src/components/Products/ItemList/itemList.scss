@@ -1,4 +1,4 @@
-@import "../../styles/main.scss";
+@import "../../../styles/main.scss";
 
 .itemList{
     background-color: map-get($map: $colors, $key: primary);
@@ -95,7 +95,7 @@
                     border-top: map-get($map: $colors, $key: tertiary) 2px solid;
                     border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
 
-                    &.active{
+                    &:disabled{
                         opacity: 0.2;
                     }
                 }
@@ -106,7 +106,7 @@
                     border-top: map-get($map: $colors, $key: tertiary) 2px solid;
                     border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
 
-                    &.active{
+                    &:disabled{
                         opacity: 0.2;
                     }
                 }
@@ -143,12 +143,13 @@
     }
 
     &__buy{
-        
+
         button{
             background-color: map-get($map: $colors, $key: quaternary);
             border: 0;
             border-radius: 999px;
             color: map-get($map: $colors, $key: secondary);
+            content: "Agregar al carrito";
             cursor: pointer;
             font-size: 1.1rem;
             font-weight: 700;
@@ -157,10 +158,35 @@
             text-align: center;
             transition: all .3s ease-out;
             width: 100%;
+            
 
             &:hover{
                 transform: translateY(-5px);
             }
+
+            &.success{
+                animation: success-btn 1s ease forwards alternate;
+                background-image: linear-gradient(to left, map-get($colors, quaternary) 50%, map-get($colors, success) 50%);
+                background-size: 200%;
+                background-position: 100% 100%;
+                padding-left: 25px;
+                position: relative;
+                transition: all .3s ease-out;
+
+                &::before{
+                    content: "\f058";
+                    font-family: "Font Awesome 5 Free";
+                    font-size: .9rem;
+                    left: 4%;
+                    top: 30%;
+                    position: absolute;
+                }
+            }
         }
     }
+}
+
+@keyframes success-btn{
+    0%{background-position: 100% 100%;}
+    100%{background-position: 0 100%;}
 }
