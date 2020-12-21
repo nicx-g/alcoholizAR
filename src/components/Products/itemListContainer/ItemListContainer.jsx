@@ -1,8 +1,8 @@
 import './itemListContainer.scss';
 
-const product = ({children}) => {
+const product = ({children, className}) => {
     return (
-        <div className="itemListContainer">
+        <div className={className}>
             {children}
         </div>
     )
