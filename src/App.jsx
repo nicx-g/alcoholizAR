@@ -1,10 +1,11 @@
+import {useState, useEffect} from 'react'
 
 import Nav from './components/Global/Navbar/Nav/Nav';
 import Container from './components/Global/Container/Container';
 import ItemListContainer from './components/Products/itemListContainer/ItemListContainer';
 import ItemList from './components/Products/ItemList/ItemList';
-import {useState, useEffect} from 'react'
 import Preloader from './components/Global/Preloader/Preloader';
+import ItemDetailContainer from './components/Products/ItemDetailContainer/ItemDetailContainer'
 
 function App() {
 
@@ -14,60 +15,69 @@ function App() {
         {
             "id": 1,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 2,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 3,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 4,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 5,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 6,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 7,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
         {
             "id": 8,
             "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
             "precio": 430
         },
     ]
+
+    const itemDetail = {
+        "id": 10,
+        "titulo": "Andes Origen",
+        "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
+        "descripcionLarga": "Cerveza Andes Origen Rubia Lata 473ml Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem accusantium deserunt unde, vel laudantium neque provident rerum magni nostrum facere debitis commodi at eius suscipit! Quam earum impedit ipsa.",
+        "stock": 60,
+        "precio": 430
+    }
     
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -79,10 +89,6 @@ function App() {
     useEffect(() => {
         getProducts.then(rta => setItems(rta))
     }, [])
-
-    useEffect(() => {
-        items.map(item => console.log(item))
-    }, [items])
       
     return (
         <>
@@ -98,7 +104,7 @@ function App() {
                             <ItemList 
                             key={item.id}
                             titulo={item.titulo}
-                            descripcion={item.descripcion}
+                            descripcion={item.descripcionCorta}
                             stock={item.stock} 
                             precio={item.precio}
                             />
@@ -108,6 +114,7 @@ function App() {
                         />
                     }
                 </ItemListContainer>
+                <ItemDetailContainer/>
             </Container>
         </div>
         </>
