@@ -10,30 +10,34 @@ const ProductosRecomendados = () => {
     const itemsRecomendados = [
         {
             "id": 1,
-            "titulo": "Andes Origen",
-            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
+            "titulo": "Corona",
+            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
+            "categoria": "corona",
             "precio": 430
         },
         {
             "id": 2,
-            "titulo": "Andes Origen",
-            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
+            "titulo": "Quilmes",
+            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
+            "stock": 30,
+            "categoria": "quilmes",
             "precio": 430
         },
         {
             "id": 3,
-            "titulo": "Andes Origen",
-            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
+            "titulo": "Brahma",
+            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
+            "categoria": "brahma",
             "precio": 430
         },
         {
             "id": 4,
-            "titulo": "Andes Origen",
-            "descripcionCorta": "Cerveza Andes Origen Rubia Lata 473ml",
+            "titulo": "Patagonia Lager",
+            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
             "stock": 60,
+            "categoria": "patagonia",
             "precio": 430
         }
     ]
@@ -57,15 +61,9 @@ const ProductosRecomendados = () => {
             <div className="productosRecomendados__itemList">
                 {
                     items.length ?
-                    items.map(item => (
                         <ItemList 
-                        key={item.id}
-                        titulo={item.titulo}
-                        descripcion={item.descripcionCorta}
-                        stock={item.stock} 
-                        precio={item.precio}
-                        />
-                    )) :
+                        productsArray={items}
+                        /> :
                     <Preloader
                     texto={"Cargando productos recomendados"}
                     />

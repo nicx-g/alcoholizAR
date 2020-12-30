@@ -18,7 +18,8 @@
     }
 
     &__title{
-        border-left: 5px solid map-get($map: $colors, $key: quaternary);        display:flex;
+        border-left: 5px solid map-get($map: $colors, $key: quaternary);
+        display:flex;
         flex-direction: column;
         margin-top: 10px;
         padding-left: 15px;
@@ -48,20 +49,24 @@
     }
 
     &__detail{
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
-        button{
+        a{
             background-color: map-get($map: $colors, $key: quaternary);
             border: 0;
             border-radius: 999px;
             color: map-get($map: $colors, $key: secondary);
-            content: "Agregar al carrito";
             cursor: pointer;
             font-size: 1.1rem;
             font-weight: 700;
+            margin: 0 auto;
             padding: 10px 20px;
             outline: none;
             text-align: center;
             transition: all .3s ease-out;
+            text-decoration: none;
             width: 100%;
             
 

@@ -45,12 +45,13 @@ const ItemDetail = ({props}) => {
                 <div className="itemDetail__wrapper__image">
                     <img src="https://loremflickr.com/300/300" alt="Cerveza Andes Origen Rubia lata 473ml"/>
                 </div>
-                <div className="itemDetail__wrapper__title">
-                    <span className="itemDetail__wrapper__title-title">{props.titulo}</span>
-                    <span className="itemDetail__wrapper__title-description">{props.descripcionLarga}</span>
-                </div>
+                
             </div>
             <div className="itemDetail__wrapper">
+                <div className="itemDetail__wrapper__title">
+                    <span className="itemDetail__wrapper__title-title">{props.titulo}</span>
+                    <span className="itemDetail__wrapper__title-description">{props.descripcion}</span>
+                </div>
                 <div className="itemDetail__wrapper__variants">
                     <span className="itemDetail__wrapper__variants-text">¿Cuántas unidades?</span>
                     <span className="itemDetail__wrapper__variants-subText">Sólo múltiplos de 6</span>
@@ -75,7 +76,7 @@ const ItemDetail = ({props}) => {
                     </div>
                 </div>
                 <div className="itemDetail__wrapper__price">
-                    <span>El precio es: ${props.precio}</span>
+                    <span>${props.precio}</span>
                 </div>
                 <div className="itemDetail__wrapper__buy">
                     <button

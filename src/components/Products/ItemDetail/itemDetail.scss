@@ -17,10 +17,11 @@
     }
 
     &__wrapper{
+        align-items: center;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+        justify-content: space-between;
+        margin: 0 40px;
         width: 50%;
 
         &__image{
@@ -30,6 +31,7 @@
         }
     
         &__title{
+            border-left: 5px solid map-get($map: $colors, $key: quaternary);
             display:flex;
             flex-direction: column;
             margin-top: 10px;
@@ -40,17 +42,14 @@
                 font-size: 1.5rem;
                 font-weight: 700;
                 margin-bottom: 10px;
-                text-align: center;
             }
             &-description{
                 color: map-get($map: $colors, $key: secondary);
                 font-size: 1.3rem;
-                text-align: center;
             }
         }
     
         &__variants{
-            align-items: center;
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -60,21 +59,21 @@
                 color: map-get($map: $colors, $key: secondary);
                 font-size: 1.3rem;
                 font-weight: 600;
-                margin: 0 auto;
+                margin: 5px 0;
             }
     
             &-subText{
                 color: map-get($map: $colors, $key: secondary);
                 font-size: 1.1rem;
                 font-weight: 400;
-                margin: 0 auto 5px;
+                margin: 5px 0;
             }
     
             &-stockText{
                 color: map-get($map: $colors, $key: secondary);
                 font-size: 1.1rem;
-                font-weight: 400;
-                margin: 0 auto 5px;
+                font-weight: 600;
+                margin: 5px 0;
             }
     
     
@@ -82,7 +81,8 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
-                margin: 15px 0;
+                margin: 5px 0;
+                margin-top: 15px;
     
                 &-itemCount{
                     background-color: map-get($map: $colors, $key: primary);
@@ -132,7 +132,6 @@
                     border-top: map-get($map: $colors, $key: tertiary) 2px solid;
                     border-bottom: map-get($map: $colors, $key: tertiary) 2px solid;
                     border-radius: 0;
-                    // box-shadow: none;
                     font-family: "Quicksand", sans-serif;
                     font-size: 1.3rem;
                     font-weight: 500;
@@ -148,12 +147,12 @@
             align-items: center;
             display: flex;
             justify-content: center;
-            margin: 10px;
+            margin: 5px;
     
             span{
                 color: map-get($map: $colors, $key: secondary);
-                font-size: 1.4rem;
-                font-weight: 600;
+                font-size: 1.5rem;
+                font-weight: bold;
             }
         }
     
@@ -168,7 +167,7 @@
                 cursor: pointer;
                 font-size: 1.4rem;
                 font-weight: 700;
-                padding: 20px 40px;
+                padding: 10px 20px;
                 outline: none;
                 text-align: center;
                 transition: all .3s ease-out;

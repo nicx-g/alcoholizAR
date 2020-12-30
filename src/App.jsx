@@ -1,9 +1,10 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import VerProductos from './components/VerProductos/VerProductos';
 import EnConstruccion from './components/Home/EnConstruccion';
 import Nav from './components/Global/Navbar/Nav/Nav';
 import CategoriesNav from './components/Products/Categories/CategoriesNav';
+import Category from './components/Category/Category';
+import ItemDetailContainer from './components/Products/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
       
@@ -15,9 +16,13 @@ function App() {
                     <EnConstruccion />
                 </Route>
 
-                <Route path="/productos">
+                <Route path="/productos/:productos_cerveza?">
                     <CategoriesNav />
-                    <VerProductos />
+                    <Category />
+                </Route>
+
+                <Route path="/detail/:producto_id?">
+                    <ItemDetailContainer />
                 </Route>
 
                 <Route path="/como-funciona">
