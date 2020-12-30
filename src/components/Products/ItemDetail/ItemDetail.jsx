@@ -43,7 +43,7 @@ const ItemDetail = ({props}) => {
         <div className="itemDetail">
             <div className="itemDetail__wrapper">
                 <div className="itemDetail__wrapper__image">
-                    <img src="https://via.placeholder.com/300x300" alt="Cerveza Andes Origen Rubia lata 473ml"/>
+                    <img src="https://loremflickr.com/300/300" alt="Cerveza Andes Origen Rubia lata 473ml"/>
                 </div>
                 <div className="itemDetail__wrapper__title">
                     <span className="itemDetail__wrapper__title-title">{props.titulo}</span>

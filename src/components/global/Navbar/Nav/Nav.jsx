@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react'
+import {NavLink} from 'react-router-dom';
 
 import './nav.scss';
 import '../../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
@@ -17,13 +18,13 @@ const Nav = () => {
             <Container>
                 <nav className="nav">
                     <div className="nav__menu">
-                        <a href="#/inicio">
-                            <img src="https://via.placeholder.com/200x80" alt="Logo de la página"/>
-                        </a>
+                        <NavLink to="/">
+                            <img src="https://loremflickr.com/200/80" alt="Logo de la página"/>
+                        </NavLink>
                         <ul>
-                            <li><a href="#/productos">Ver productos</a></li>
-                            <li><a href="#/comofunciona">Cómo funciona</a></li>
-                            <li><a href="#/zonasdeentrega">Zonas de entrega</a></li>
+                            <li><NavLink activeClassName="link-active" to="/productos">Ver productos</NavLink></li>
+                            <li><NavLink activeClassName="link-active" to="/como-funciona">Cómo funciona</NavLink></li>
+                            <li><NavLink activeClassName="link-active" to="/zonas-de-entrega">Zonas de entrega</NavLink></li>
                         </ul>
                     </div>
                     <div className="nav__actions">
