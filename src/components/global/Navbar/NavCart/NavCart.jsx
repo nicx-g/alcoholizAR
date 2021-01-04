@@ -1,5 +1,3 @@
-import './navCart.scss'
-
 const CardWidget = ({showHide}) => {
     return  (
     <div className="nav__actions__cart">

@@ -1,5 +1,3 @@
-import './itemListContainer.scss';
-
 const product = ({children, className}) => {
     return (
         <div className={className}>

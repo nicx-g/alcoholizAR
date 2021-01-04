@@ -1,2 +1,17 @@
 @import './variables';
 @import './global';
+
+// Componentes
+
+@import '../components/Global/Container/container';
+@import '../components/Global/Navbar/CartWidget/cartWidget';
+@import '../components/Global/Navbar/Nav/nav';
+@import '../components/Global/Navbar/NavCart/navCart';
+@import '../components/Global/Preloader/preloader';
+@import '../components/Home/enConstruccion';
+@import '../components/Products/Categories/categoriesNav';
+@import '../components/Products/ItemDetail/itemDetail';
+@import '../components/Products/ItemDetailContainer/itemDetailContainer';
+@import '../components/Products/ItemList/itemList';
+@import '../components/Products/itemListContainer/itemListContainer';
+@import '../components/Products/ProductosRecomendados/productosRecomendados';

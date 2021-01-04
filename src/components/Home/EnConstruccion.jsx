@@ -1,5 +1,3 @@
-import './enConstruccion.scss'
-
 const EnConstruccion = () => {
     return (
         <div className="sitioEnConstruccion">

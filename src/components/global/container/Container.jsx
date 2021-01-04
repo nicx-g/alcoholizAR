@@ -1,5 +1,3 @@
-import './container.scss'
-
 const container = ({children}) => {
     return (
     <div className="container">

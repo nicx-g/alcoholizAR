@@ -1,5 +1,5 @@
-import { useState} from 'react'
-import './itemDetail.scss'
+import { useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 const ItemDetail = ({props}) => {
 
@@ -33,10 +33,23 @@ const ItemDetail = ({props}) => {
 
     const alternarSuccess = () => {
         setBtnSuccess(true)
+        goToCartBtnShow();
         setTimeout(() => {
             setBtnSuccess(false)
         }, 3000)
         
+    }
+
+    const [showGoToCart, setShowGoToCart] = useState(false);
+
+    const goToCartBtnShow = () => {
+        setShowGoToCart(true);
+    }
+
+    let history = useHistory();
+
+    const GoToCartRedirect = () => {
+        history.push('/cart')
     }
 
     return (
@@ -83,6 +96,12 @@ const ItemDetail = ({props}) => {
                     onClick={alternarSuccess}
                     className={btnSuccess ? "success" : ""}
                     >{btnSuccess ? "Agregado con éxito" : "Agregar al carrito"}</button>
+                </div>
+                <div className="itemDetail__wrapper__goToCart">
+                    <button
+                    onClick={GoToCartRedirect}
+                    className={showGoToCart ? "show" : ""}
+                    >Ver carrito</button>
                 </div>
             </div>
         </div>

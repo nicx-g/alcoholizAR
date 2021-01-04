@@ -1,8 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import Preloader from '../../Global/Preloader/Preloader';
 
-import './itemList.scss';
-
 const ItemList = ({productsArray, productsCategory}) => {
 
     const productItems = productsCategory ?

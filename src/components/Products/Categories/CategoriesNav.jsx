@@ -1,5 +1,3 @@
-import './categoriesNav.scss';
-
 import Container from '../../Global/Container/Container';
 import {NavLink} from 'react-router-dom';
 

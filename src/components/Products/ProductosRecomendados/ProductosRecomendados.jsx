@@ -1,7 +1,6 @@
 import ItemList from '../ItemList/ItemList';
 import {useState, useEffect} from 'react'
 import Preloader from '../../Global/Preloader/Preloader';
-import "./ProductosRecomendados.scss";
 
 const ProductosRecomendados = () => {
 

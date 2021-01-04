@@ -1,4 +1,3 @@
-import './cartWidget.scss'
 import ItemList from '../../../Products/ItemList/ItemList'
 
 const CartWidget = ({showHide}) => {

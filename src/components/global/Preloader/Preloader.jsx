@@ -1,5 +1,3 @@
-import './preloader.scss';
-
 const Preloader = ({texto}) => {
     return(
         <div className="preloader">
