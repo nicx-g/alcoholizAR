@@ -5,12 +5,15 @@ import Nav from './components/Global/Navbar/Nav/Nav';
 import CategoriesNav from './components/Products/Categories/CategoriesNav';
 import Category from './components/Category/Category';
 import ItemDetailContainer from './components/Products/ItemDetailContainer/ItemDetailContainer';
+import Footer from './components/Global/Footer/Footer';
 
 function App() {
       
     return (
         <BrowserRouter>
+        
             <Nav />
+            
             <Switch>
                 <Route exact path="/">
                     <EnConstruccion />
@@ -32,8 +35,10 @@ function App() {
                 <Route path="/zonas-de-entrega">
                     <EnConstruccion />
                 </Route>
-
             </Switch>
+            
+            <Footer />
+
         </BrowserRouter>
     )
 }

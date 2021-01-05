@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // scss
 import './styles/main.scss'
+//font awesome
+import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 
 ReactDOM.render(
     <App />,
