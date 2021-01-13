@@ -38,7 +38,7 @@ const ItemDetail = ({props}) => {
         goToCartBtnShow();
         setTimeout(() => {
             setBtnSuccess(false)
-        }, 3000)
+        }, 2000)
         
     }
 
@@ -60,7 +60,7 @@ const ItemDetail = ({props}) => {
         alternarSuccess();
         setData({...data, 
             cantidad: data.cantidad + cantidadProductos,
-            items: [...data.items, props]})
+            items: [...data.items, props]})            
     }
 
     useEffect(() => {
@@ -108,6 +108,7 @@ const ItemDetail = ({props}) => {
                 </div>
                 <div className="itemDetail__wrapper__buy">
                     <button
+                    disabled={btnSuccess ? 'disabled' : null}
                     onClick={onAdd}
                     className={btnSuccess ? "success" : ""}
                     >{btnSuccess ? "Agregado con éxito" : "Agregar al carrito"}</button>

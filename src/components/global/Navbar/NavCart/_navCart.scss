@@ -20,19 +20,63 @@
                 color: map-get($map: $colors, $key: tertiary);
             }
             
-            span{
+            p{
                 background-color: map-get($map: $colors, $key: tertiary);
                 border-radius: 50%;
                 color: map-get($colors, secondary);
-                left: -5px;
                 font-family: "Quicksand", sans-serif;
                 font-size: .8rem;
                 font-weight: bold;
+                margin: 0;
                 padding: 2px 4.5px;
-                position: relative;
-                top: -20px;
+                position: absolute;
+                right: -13px;
+                top: -13px;
                 transition: all .3s ease-in;
             }
         }
+    }
+}
+
+.productOnCart{
+    animation: productOnCart 1s linear;
+}
+
+.dataUp{
+    animation: dataUp 1s linear;
+    animation-delay: .1s;
+}
+
+
+@keyframes productOnCart {
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.2);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes dataUp{
+    0%{
+        transform: translateY(0);
+    }
+
+    30%{
+        transform: translateY(-5px) rotate(0deg);
+    }
+
+    70%{
+        transform: translateY(-5px) rotate(360deg);
+
+    }
+
+    100%{
+        transform: translateY(0) rotate(360deg);
     }
 }
