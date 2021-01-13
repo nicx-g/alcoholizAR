@@ -1,5 +1,7 @@
-import { useState} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+
+import {Store} from '../../../store/index';
 
 const ItemDetail = ({props}) => {
 
@@ -52,6 +54,19 @@ const ItemDetail = ({props}) => {
         history.push('/cart')
     }
 
+    const [data, setData] = useContext(Store);
+    
+    const onAdd = () => {
+        alternarSuccess();
+        setData({...data, 
+            cantidad: data.cantidad + cantidadProductos,
+            items: [...data.items, props]})
+    }
+
+    useEffect(() => {
+        console.log(data)
+    }, [data])
+
     return (
         <div className="itemDetail">
             <div className="itemDetail__wrapper">
@@ -93,7 +108,7 @@ const ItemDetail = ({props}) => {
                 </div>
                 <div className="itemDetail__wrapper__buy">
                     <button
-                    onClick={alternarSuccess}
+                    onClick={onAdd}
                     className={btnSuccess ? "success" : ""}
                     >{btnSuccess ? "Agregado con éxito" : "Agregar al carrito"}</button>
                 </div>
