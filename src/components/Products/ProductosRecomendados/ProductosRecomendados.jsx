@@ -1,55 +1,37 @@
+import {getFirestore} from '../../../firebase/index';
+
 import ItemList from '../ItemList/ItemList';
 import {useState, useEffect} from 'react'
 import Preloader from '../../Global/Preloader/Preloader';
 
+
 const ProductosRecomendados = () => {
 
     const [items, setItems] = useState([])
+    const db = getFirestore();
     
-    const itemsRecomendados = [
-        {
-            "id": 1,
-            "titulo": "Corona",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "corona",
-            "precio": 430
-        },
-        {
-            "id": 2,
-            "titulo": "Quilmes",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 30,
-            "categoria": "quilmes",
-            "precio": 430
-        },
-        {
-            "id": 3,
-            "titulo": "Brahma",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "brahma",
-            "precio": 430
-        },
-        {
-            "id": 4,
-            "titulo": "Patagonia Lager",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "patagonia",
-            "precio": 430
-        }
-    ]
+    const getItemsFromDb = () => {
+        db.collection("productos")
+        .where("recomendado", "==", true).get()
+        .then(data => {
 
-    const getItems = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(itemsRecomendados)
-        }, 3000)
-        
-    })
-
-    useEffect(() => {
-        getItems.then(rta => setItems(rta))
+            let arr = [];
+            data.forEach(item => {
+                arr.push({
+                    id: item.id,
+                    data: item.data()
+                });
+            });
+            setItems(arr)
+        })
+        .catch(error => {
+            console.log(error);
+            alert('algo salió mal, revisa tu conexión o intentá de nuevo más tarde');
+        })
+    };
+    
+     useEffect(() => {
+        getItemsFromDb();
     }, [])
 
     return (

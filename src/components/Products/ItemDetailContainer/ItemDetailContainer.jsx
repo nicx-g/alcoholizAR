@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react' 
 import {useParams} from 'react-router-dom';
+import {getFirestore} from '../../../firebase/index';
 
 import ItemDetail from '../ItemDetail/ItemDetail';
 import ProductosRecomendados from '../ProductosRecomendados/ProductosRecomendados';
@@ -10,89 +11,18 @@ const ItemDetailContainer = () => {
 
     const {producto_id} = useParams();
     const [itemDetail, setItemDetail] = useState(null)
-
-    const products = [
-        {
-            "id": 1,
-            "titulo": "Corona",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "corona",
-            "precio": 430
-        },
-        {
-            "id": 2,
-            "titulo": "Quilmes",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 30,
-            "categoria": "quilmes",
-            "precio": 430
-        },
-        {
-            "id": 3,
-            "titulo": "Brahma",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "brahma",
-            "precio": 430
-        },
-        {
-            "id": 4,
-            "titulo": "Patagonia Lager",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "patagonia",
-            "precio": 430
-        },
-        {
-            "id": 5,
-            "titulo": "Stella Artois",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "stella-artois",
-            "precio": 430
-        },
-        {
-            "id": 6,
-            "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "andes-origen",
-            "precio": 430
-        },
-        {
-            "id": 7,
-            "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "andes-origen",
-            "precio": 430
-        },
-        {
-            "id": 8,
-            "titulo": "Andes Origen",
-            "descripcion": "Cerveza Andes Origen Rubia Lata 473ml",
-            "stock": 60,
-            "categoria": "andes-origen",
-            "precio": 430
-        },
-    ]
-    
-    const getProduct = new Promise((resolve, reject) => {
-
-        setTimeout(() => {
-            resolve({
-                id: products[producto_id - 1].id,
-                titulo: products[producto_id - 1].titulo,
-                descripcion: products[producto_id - 1].descripcion,
-                precio: products[producto_id - 1].precio,
-                stock: products[producto_id - 1].stock
-            })
-        }, 2000)
-    })
+    const db = getFirestore();
 
     useEffect(() => {
-        getProduct.then(response => setItemDetail(response))
+        db.doc(`productos/${producto_id}`).get()
+        .then(item => {
+            if (item.exists){
+                setItemDetail(item.data())
+            } else {
+                alert('Todavía no tenemos este producto, te habrás equivocado? si no es así, pronto lo tendremos!')
+            }
+        })
+        .catch(error => console.log('Algo salió mal, revisá tu conexión o volvelo a intentar más tarde'))
     }, [])
     
     return (

@@ -60,12 +60,13 @@ const ItemDetail = ({props}) => {
         alternarSuccess();
         setData({...data, 
             cantidad: data.cantidad + cantidadProductos,
-            items: [...data.items, props]})            
+            items: [...data.items, {"data":props, "cantidadProductos":cantidadProductos}]})     
+        console.log(data)
     }
 
     useEffect(() => {
         console.log(data)
-    }, [data])
+    }, [])
 
     return (
         <div className="itemDetail">

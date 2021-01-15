@@ -4,7 +4,7 @@ import Preloader from '../../Global/Preloader/Preloader';
 const ItemList = ({productsArray, productsCategory}) => {
 
     const productItems = productsCategory ?
-    productsArray.length > 0 && productsArray.filter(product => (product.categoria === productsCategory)) :
+    productsArray.length > 0 && productsArray.filter(product => (product.data.categoria === productsCategory)) :
     productsArray;
     
     return (
@@ -18,11 +18,11 @@ const ItemList = ({productsArray, productsCategory}) => {
                                 <img src="https://loremflickr.com/150/150" alt="Cerveza Andes Origen Rubia lata 473ml"/>
                             </div>
                             <div className="itemList__title">
-                                <span className="itemList__title-title">{product.titulo}</span>
-                                <span className="itemList__title-description">{product.descripcion}</span>
+                                <span className="itemList__title-title">{product.data.titulo}</span>
+                                <span className="itemList__title-description">{product.data.descripcion}</span>
                             </div>
                             <div className="itemList__price">
-                                <span>El precio es: ${product.precio}</span>
+                                <span>El precio es: ${product.data.precio}</span>
                             </div>
                             <div className="itemList__detail">
                                 <NavLink to={`/detail/${product.id}`}>Ver producto</NavLink>
