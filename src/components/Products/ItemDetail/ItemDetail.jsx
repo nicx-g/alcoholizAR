@@ -5,33 +5,28 @@ import {Store} from '../../../store/index';
 
 const ItemDetail = ({props}) => {
 
-    const [cantidadProductos, setCantidadProductos] = useState(6)
+    let history = useHistory();
+    const [cantidadProductos, setCantidadProductos] = useState(6);
+    const [btnSuccess, setBtnSuccess] = useState(false);
+    const [showGoToCart, setShowGoToCart] = useState(false);
+    const [data, setData] = useContext(Store);
 
     const itemCountSuma = () => {
 
         if(cantidadProductos < props.stock) {
-
             setCantidadProductos( () => parseInt(cantidadProductos) + 6)
-            
         } else{
-
             return
         }
     }
 
     const itemCountResta = () => {
-
         if(cantidadProductos < 0 || cantidadProductos === 0) {
-
             return
-            
         } else{
-
             setCantidadProductos( () => parseInt(cantidadProductos) - 6)
         }
     }
-
-    const [btnSuccess, setBtnSuccess] = useState(false)
 
     const alternarSuccess = () => {
         setBtnSuccess(true)
@@ -39,23 +34,12 @@ const ItemDetail = ({props}) => {
         setTimeout(() => {
             setBtnSuccess(false)
         }, 2000)
-        
     }
 
-    const [showGoToCart, setShowGoToCart] = useState(false);
+    const goToCartBtnShow = () => setShowGoToCart(true);
 
-    const goToCartBtnShow = () => {
-        setShowGoToCart(true);
-    }
+    const GoToCartRedirect = () => history.push('/cart')
 
-    let history = useHistory();
-
-    const GoToCartRedirect = () => {
-        history.push('/cart')
-    }
-
-    const [data, setData] = useContext(Store);
-    
     const onAdd = () => {
         alternarSuccess();
         setData({...data, 
@@ -63,7 +47,7 @@ const ItemDetail = ({props}) => {
             items: [...data.items, {"data":props, "cantidadProductos":cantidadProductos}]})     
         console.log(data)
     }
-
+    
     useEffect(() => {
         console.log(data)
     }, [])

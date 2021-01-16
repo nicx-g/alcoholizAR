@@ -1,0 +1,155 @@
+.cart{
+
+    &__vendor{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px 0;
+
+        &-title{
+            color: map-get($map: $colors, $key: primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        &-subtitle{
+            color: map-get($map: $colors, $key: primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+    }
+
+    &__wrapperItems{
+        max-height: 600px;
+        overflow-y: scroll;
+
+        &__item{
+            background-color: map-get($map: $colors, $key: primary);
+            border-bottom: map-get($map: $colors, $key: quaternary) 1px solid;
+            border-radius: 5px;
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+
+            &__pic{
+                width: 20%;
+            }
+
+            &__vendor{
+                align-items: center;
+                display: flex;
+                justify-content: space-around;
+                width: 75%;
+
+                &-title{
+                    color: map-get($map: $colors, $key: quaternary);
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                }
+
+                &-description, &-price, &-qty{
+                    color: map-get($map: $colors, $key: secondary);
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+            }
+
+            &__actions{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+
+                i{
+                    color: map-get($map: $colors, $key: secondary);
+                    cursor: pointer;
+                    font-size: 1.3rem;
+                    margin: 10px 0;
+                    transition: all .3s ease-in-out;
+
+                    &:hover{
+                        transform: translateX(-5px);
+                    }
+                }
+            }
+        }
+    }
+    &__totalPrice{
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px 0;
+
+        p{
+            border: 2px solid map-get($map: $colors, $key: primary);
+            border-radius: 5px;
+            color: map-get($map: $colors, $key: primary);
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 10px;
+        }
+    }
+    
+    &__actions{
+        margin: 10px 0;
+        display: flex;
+        justify-content: flex-end;
+
+        &__emptyCart, &__finish{
+            button{
+                background-color: map-get($map: $colors, $key: primary);
+                border: 0;
+                border-radius: 999px;
+                color: map-get($map: $colors, $key: secondary);
+                cursor: pointer;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 0 5px;
+                padding: 10px 20px;
+                outline: none;
+                text-align: center;
+                transition: all .3s ease-in;
+                width: auto;
+
+                &:hover{
+                    background: map-get($map: $colors, $key: quaternary);
+                    color: map-get($map: $colors, $key: primary);
+                }
+            }
+        }
+    }
+}
+
+.sinProductos{
+    align-items: center;
+    background-color: map-get($map: $colors, $key: primary);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    width: auto;
+
+    h2{
+        color: map-get($map: $colors, $key: secondary);
+        font-size: 1.5rem;
+        font-weight: bold;
+        max-width: 500px;
+        text-align: center;
+    }
+    a{
+        border: 2px transparent solid;
+        color: map-get($map: $colors, $key: quaternary);
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 10px 0;
+        padding: 10px;
+        text-decoration: none;
+        transition: all .5s ease-in-out;
+
+        &:hover{
+            border: 2px map-get($map: $colors, $key: quaternary) solid;
+            border-radius: 5px;
+        }
+    }
+}

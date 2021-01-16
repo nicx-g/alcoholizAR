@@ -1,4 +1,4 @@
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import {useState} from 'react';
 
 import EnConstruccion from './components/Home/EnConstruccion';
@@ -25,7 +25,15 @@ function App() {
                 
                 <Switch>
                     <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
+
+                    <Route exact path="/home">
                         <EnConstruccion />
+                    </Route>
+
+                    <Route path="/coder-reactjs-7130">
+                        <Redirect to="/home"/>
                     </Route>
 
                     <Route path="/productos/:productos_cerveza?">

@@ -25,10 +25,10 @@ const CartWidget = ({showHide}) => {
                                         <img src="https://loremflickr.com/50/100" alt="producto"/>
                                     </div>
                                     <div className="cartWidget__items__item__wrapper__detail">
-                                        <h4>{item.titulo}</h4>
-                                        <p>{item.descripcion}</p>
-                                        <p>{item.cantidadProductos}</p>
-                                        <p>${item.precio}</p>
+                                        <h4>{item.data.titulo}</h4>
+                                        <p>{item.data.descripcion}</p>
+                                        <p>{item.cantidadProductos} unidades</p>
+                                        <p>${item.data.precio}</p>
                                     </div>
                                 </div>
                                 <div className="cartWidget__items__item__delete">

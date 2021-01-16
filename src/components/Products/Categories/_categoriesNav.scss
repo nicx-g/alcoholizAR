@@ -1,5 +1,10 @@
 .categories{
     background-color: map-get($map: $colors, $key: primary);
+    margin-top: 124px;
+    margin-bottom: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     ul{
         align-items: center;

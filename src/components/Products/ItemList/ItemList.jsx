@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import Preloader from '../../Global/Preloader/Preloader';
 
 const ItemList = ({productsArray, productsCategory}) => {
@@ -25,7 +25,7 @@ const ItemList = ({productsArray, productsCategory}) => {
                                 <span>El precio es: ${product.data.precio}</span>
                             </div>
                             <div className="itemList__detail">
-                                <NavLink to={`/detail/${product.id}`}>Ver producto</NavLink>
+                                <Link to={`/detail/${product.id}`}>Ver producto</Link>
                             </div>
                         </div>
                     )
