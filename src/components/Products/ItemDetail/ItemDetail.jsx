@@ -70,8 +70,12 @@ const ItemDetail = ({props}) => {
     };
     
     useEffect(() => {
-        if(data.items.length > 0){
-            setStock(() => stock - data.items[data.items.findIndex(finder)].item.cantidadProductos)
+        if(data.items[data.items.findIndex(finder)]){
+            if(data.items[data.items.findIndex(finder)].id) {
+                setStock(() => stock - data.items[data.items.findIndex(finder)].item.cantidadProductos)
+            }
+        } else {
+            setStock(() => props.item.stock)
         }
     }, [])
 
