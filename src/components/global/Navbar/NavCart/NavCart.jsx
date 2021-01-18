@@ -18,7 +18,7 @@ const CardWidget = ({showHide}) => {
             setProductOnCart("");
         }, 1100)
         
-    }, [data.cantidad])
+    }, [data])
 
     return  (
     <div className="nav__actions__cart">

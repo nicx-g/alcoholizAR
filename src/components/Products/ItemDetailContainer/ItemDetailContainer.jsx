@@ -17,7 +17,10 @@ const ItemDetailContainer = () => {
         db.doc(`productos/${producto_id}`).get()
         .then(item => {
             if (item.exists){
-                setItemDetail(item.data())
+                setItemDetail({
+                    item: item.data(),
+                    id: item.id
+                })
             } else {
                 alert('Todavía no tenemos este producto, te habrás equivocado? si no es así, pronto lo tendremos!')
             }

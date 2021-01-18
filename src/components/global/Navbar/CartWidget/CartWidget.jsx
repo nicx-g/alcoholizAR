@@ -6,7 +6,19 @@ import {NavLink} from 'react-router-dom';
 const CartWidget = ({showHide}) => {
 
     const [data, setData] = useContext(Store)
+
+    const acumulador = (acumulador, objeto) => {
+        return acumulador + objeto.item.cantidadProductos
+    }
     
+    const deleteOnCart = (id) => {
+        let newProducts = data.items.filter(item => (item.id !== id))
+        setData({...data,
+            items: newProducts,
+            cantidad: data.cantidad - data.items.filter(item => (item.id !== id))
+        })
+    };
+
     return (
         <div 
         className={`overlay ${showHide ? 'show' : 'hide'}`}>
@@ -19,20 +31,22 @@ const CartWidget = ({showHide}) => {
                 <div className="cartWidget__items">
                     {data.items.map(item => {
                         return (
-                            <div className="cartWidget__items__item">
+                            <div className="cartWidget__items__item" key={item.id}>
                                 <div className="cartWidget__items__item__wrapper">
                                     <div className="cartWidget__items__item__wrapper__img">
                                         <img src="https://loremflickr.com/50/100" alt="producto"/>
                                     </div>
                                     <div className="cartWidget__items__item__wrapper__detail">
-                                        <h4>{item.data.titulo}</h4>
-                                        <p>{item.data.descripcion}</p>
-                                        <p>{item.cantidadProductos} unidades</p>
-                                        <p>${item.data.precio}</p>
+                                        <h4>{item.item.titulo}</h4>
+                                        <p>{item.item.descripcion}</p>
+                                        <p>{item.item.cantidadProductos} unidades</p>
+                                        <p>${item.item.precio}</p>
                                     </div>
                                 </div>
                                 <div className="cartWidget__items__item__delete">
-                                    <i className="fas fa-trash"></i>
+                                    <i 
+                                    onClick={() => deleteOnCart(item.id)}
+                                    className="fas fa-trash"></i>
                                 </div>
                             </div>
                         )

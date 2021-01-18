@@ -175,6 +175,10 @@
                 &:hover{
                     transform: translateY(-5px);
                 }
+
+                &:disabled {
+                    cursor: no-drop;
+                }
     
                 &.success{
                     animation: success-btn 1s ease forwards alternate;

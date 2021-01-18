@@ -19,6 +19,7 @@
         display: inline-block;
         opacity: 0;
         visibility: hidden;
+        z-index: -1;
     }
 }
 .wrapper{
@@ -42,6 +43,7 @@
     &.hide{
         animation: cartWidgetHide 1s ease forwards;
         display:block;
+        z-index: -1;
     }
 
     &__vendor{
@@ -94,6 +96,7 @@
                 width: 5%;
 
                 i{
+                    cursor: pointer;
                     color: map-get($map: $colors, $key: secondary);
                     margin: 10px 5px 0;
 

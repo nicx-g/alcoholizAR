@@ -16,6 +16,8 @@ function App() {
         items: [],
         cantidad: 0
     })
+
+    const [stock, setStock] = useState(0)
       
     return (
         <Store.Provider value={[data, setData]}>
