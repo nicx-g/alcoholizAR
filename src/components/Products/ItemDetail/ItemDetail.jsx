@@ -41,8 +41,11 @@ const ItemDetail = ({props}) => {
 
     const GoToCartRedirect = () => history.push('/cart')
 
-    const finder = item => item.id === props.id;
+    const reducer = (acumulador, valor) => {return acumulador + valor.item.cantidadProductos}
 
+    const posicionProducto = data.items.findIndex(item => item.id === props.id)
+
+    let cantidadProductosTotal = data.items.reduce(reducer, 0);
     
     const onAdd = () => {
         alternarSuccess();
@@ -50,7 +53,8 @@ const ItemDetail = ({props}) => {
         if(data.items.find(item => item.id === props.id)){
 
 
-            data.items[data.items.findIndex(finder)].item.cantidadProductos = data.items[data.items.findIndex(finder)].item.cantidadProductos + cantidadProductos
+            data.items[posicionProducto].item.cantidadProductos = data.items[posicionProducto].item.cantidadProductos + cantidadProductos
+            data.cantidad = cantidadProductosTotal + cantidadProductos
 
             setData({...data})
 
@@ -59,9 +63,10 @@ const ItemDetail = ({props}) => {
         } else {
 
             props.item.cantidadProductos = cantidadProductos;
+
             setData({...data, 
                 items: [...data.items, props],
-                cantidad: data.cantidad + cantidadProductos
+                cantidad: cantidadProductosTotal + cantidadProductos
             });
 
             setStock(() => stock - cantidadProductos)
@@ -69,10 +74,12 @@ const ItemDetail = ({props}) => {
         setCantidadProductos(0);
     };
     
+    
+    
     useEffect(() => {
-        if(data.items[data.items.findIndex(finder)]){
-            if(data.items[data.items.findIndex(finder)].id) {
-                setStock(() => stock - data.items[data.items.findIndex(finder)].item.cantidadProductos)
+        if(data.items[posicionProducto]){
+            if(data.items[posicionProducto].id) {
+                setStock(() => stock - data.items[posicionProducto].item.cantidadProductos)
             }
         } else {
             setStock(() => props.item.stock)
