@@ -9,7 +9,7 @@ const ItemDetail = ({props}) => {
     const [cantidadProductos, setCantidadProductos] = useState(0);
     const [btnSuccess, setBtnSuccess] = useState(false);
     const [showGoToCart, setShowGoToCart] = useState(false);
-    const [stock, setStock] = useState(props.item.stock)
+    const [stock, setStock] = useState(null)
     const [data, setData] = useContext(Store);
 
     const itemCountSuma = () => {
@@ -54,6 +54,10 @@ const ItemDetail = ({props}) => {
 
 
             data.items[posicionProducto].item.cantidadProductos = data.items[posicionProducto].item.cantidadProductos + cantidadProductos
+
+            let precioProduct = Number(data.items[posicionProducto].item.precioTotal + (cantidadProductos * (props.item.precio/6))).toFixed(2);
+
+            data.items[posicionProducto].item.precioTotal = Number(precioProduct);
             data.cantidad = cantidadProductosTotal + cantidadProductos
 
             setData({...data})
@@ -63,6 +67,7 @@ const ItemDetail = ({props}) => {
         } else {
 
             props.item.cantidadProductos = cantidadProductos;
+            props.item.precioTotal = cantidadProductos * (props.item.precio/6);
 
             setData({...data, 
                 items: [...data.items, props],

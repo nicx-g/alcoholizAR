@@ -40,7 +40,7 @@ const CartWidget = ({showHide}) => {
                                         <h4>{item.item.titulo}</h4>
                                         <p>{item.item.descripcion}</p>
                                         <p>{item.item.cantidadProductos} unidades</p>
-                                        <p>${item.item.precio}</p>
+                                        <p>${item.item.precioTotal}</p>
                                     </div>
                                 </div>
                                 <div className="cartWidget__items__item__delete">

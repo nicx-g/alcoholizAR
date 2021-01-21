@@ -6,7 +6,16 @@ import Container from '../Global/Container/Container';
 
 const Cart = () => {
     const [data, setData] = useContext(Store);
-    console.log(data)
+
+    const limpiarCarrito = () => {
+        setData({
+            cantidad: 0,
+            items: []
+        })
+    }
+
+    const totalPrice = data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2)
+
 
     return (
         <div className="cart">
@@ -17,17 +26,17 @@ const Cart = () => {
                 </div>
                 <div className="cart__wrapperItems">
                     {data.items.length >= 1 ? 
-                    data.items.map(item => {
+                    data.items.map(prod => {
                         return (
                             <div className="cart__wrapperItems__item">
                         <div className="cart__wrapperItems__item__pic">
                             <img src="https://loremflickr.com/150/150" alt=""/> 
                         </div>
                         <div className="cart__wrapperItems__item__vendor">
-                            <h3 className="cart__wrapperItems__item__vendor-title">{item.data.titulo}</h3>
-                            <p className="cart__wrapperItems__item__vendor-description">{item.data.descripcion}</p>
-                            <p className="cart__wrapperItems__item__vendor-qty">{item.cantidadProductos} unidades</p>
-                            <p className="cart__wrapperItems__item__vendor-price">${item.data.precio} ARS</p>
+                            <h3 className="cart__wrapperItems__item__vendor-title">{prod.item.titulo}</h3>
+                            <p className="cart__wrapperItems__item__vendor-description">{prod.item.descripcion}</p>
+                            <p className="cart__wrapperItems__item__vendor-qty">{prod.item.cantidadProductos} unidades</p>
+                            <p className="cart__wrapperItems__item__vendor-price">${prod.item.precioTotal} ARS</p>
                         </div>
                         <div className="cart__wrapperItems__item__actions">
                             <i className="far fa-plus-square"></i>
@@ -43,11 +52,11 @@ const Cart = () => {
                     </div>}
                 </div>
                 <div className="cart__totalPrice">
-                    <p>$80000 pesos dea</p>
+                    <p>${totalPrice} ARS</p>
                 </div>
                 <div className="cart__actions">
                     <div className="cart__actions__emptyCart">
-                        <button>Vaciar carrito</button>
+                        <button onClick={() => limpiarCarrito()}>Vaciar carrito</button>
                     </div>
                     <div className="cart__actions__finish">
                         <button>Siguiente</button>
