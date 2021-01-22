@@ -1,21 +1,17 @@
-import {useContext} from 'react';
-import {Store} from '../../store/index';
+import {useContext, useEffect} from 'react';
+import {StoreContext} from '../../store/storeContext';
 import {Link} from 'react-router-dom'
 
 import Container from '../Global/Container/Container';
 
 const Cart = () => {
-    const [data, setData] = useContext(Store);
 
-    const limpiarCarrito = () => {
-        setData({
-            cantidad: 0,
-            items: []
-        })
-    }
+    const storeContext = useContext(StoreContext)
+    const {data, limpiarCarrito, precioTotal, setPrecioTotal, deleteOnCart, sumarMasProductos, restarProductos} = storeContext;
 
-    const totalPrice = data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2)
-
+    useEffect(() => {
+        setPrecioTotal(data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2))
+    }, [data, data.items])
 
     return (
         <div className="cart">
@@ -28,7 +24,7 @@ const Cart = () => {
                     {data.items.length >= 1 ? 
                     data.items.map(prod => {
                         return (
-                            <div className="cart__wrapperItems__item">
+                            <div className="cart__wrapperItems__item" key={prod.id}>
                         <div className="cart__wrapperItems__item__pic">
                             <img src="https://loremflickr.com/150/150" alt=""/> 
                         </div>
@@ -39,9 +35,22 @@ const Cart = () => {
                             <p className="cart__wrapperItems__item__vendor-price">${prod.item.precioTotal} ARS</p>
                         </div>
                         <div className="cart__wrapperItems__item__actions">
-                            <i className="far fa-plus-square"></i>
-                            <i className="fas fa-trash"></i>
-                            <i className="far fa-minus-square"></i>
+                            <button
+                            disabled={prod.item.cantidadProductos === prod.item.stock ? "disabled" : null}
+                            onClick={() => sumarMasProductos(prod)}>
+                                <i className="far fa-plus-square"></i>
+                            </button>
+                            <button
+                            onClick={() => deleteOnCart(prod)}
+                            >
+                                <i className="fas fa-trash"></i>
+                            </button>
+                            <button
+                            disabled={prod.item.cantidadProductos === 6 ? "disabled" : null}
+                            onClick={() => restarProductos(prod)}
+                            >
+                                <i className="far fa-minus-square"></i>
+                            </button>
                         </div>
                     </div>
                         )
@@ -52,7 +61,7 @@ const Cart = () => {
                     </div>}
                 </div>
                 <div className="cart__totalPrice">
-                    <p>${totalPrice} ARS</p>
+                    <p>${precioTotal} ARS</p>
                 </div>
                 <div className="cart__actions">
                     <div className="cart__actions__emptyCart">

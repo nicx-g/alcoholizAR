@@ -1,4 +1,4 @@
-import {NavLink, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Preloader from '../../Global/Preloader/Preloader';
 
 const ItemList = ({productsArray, productsCategory}) => {

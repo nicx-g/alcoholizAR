@@ -1,23 +1,12 @@
 import {useContext} from 'react';
-import {Store} from '../../../../store/index';
+import {StoreContext} from '../../../../store/storeContext';
 
 import {NavLink} from 'react-router-dom';
 
 const CartWidget = ({showHide}) => {
 
-    const [data, setData] = useContext(Store)
-
-    const acumulador = (acumulador, objeto) => {
-        return acumulador + objeto.item.cantidadProductos
-    }
-    
-    const deleteOnCart = (id) => {
-        let newProducts = data.items.filter(item => (item.id !== id))
-        setData({...data,
-            items: newProducts,
-            cantidad: data.cantidad - data.items.filter(item => (item.id !== id))
-        })
-    };
+    const storeContext = useContext(StoreContext)
+    const {data, deleteOnCart} = storeContext;
 
     return (
         <div 
@@ -45,7 +34,7 @@ const CartWidget = ({showHide}) => {
                                 </div>
                                 <div className="cartWidget__items__item__delete">
                                     <i 
-                                    onClick={() => deleteOnCart(item.id)}
+                                    onClick={() => deleteOnCart(item)}
                                     className="fas fa-trash"></i>
                                 </div>
                             </div>

@@ -1,25 +1,27 @@
 import {useState, useContext, useEffect} from 'react';
+import {useParams} from 'react-router-dom'
 import {useHistory} from 'react-router-dom';
 
-import {Store} from '../../../store/index';
+import {StoreContext} from '../../../store/storeContext';
 
 const ItemDetail = ({props}) => {
 
-    let history = useHistory();
+    const storeContext = useContext(StoreContext);
+    const {stock, setearStock, agregarAlCarrito} = storeContext;
+    const history = useHistory();
+    const {producto_id} = useParams();
+    
     const [cantidadProductos, setCantidadProductos] = useState(0);
     const [btnSuccess, setBtnSuccess] = useState(false);
     const [showGoToCart, setShowGoToCart] = useState(false);
-    const [stock, setStock] = useState(null)
-    const [data, setData] = useContext(Store);
 
     const itemCountSuma = () => {
-
         if(cantidadProductos < stock) {
             setCantidadProductos( () => parseInt(cantidadProductos) + 6)
         } else{
             return
         }
-    }
+    };
 
     const itemCountResta = () => {
         if(cantidadProductos < 0 || cantidadProductos === 0) {
@@ -27,7 +29,7 @@ const ItemDetail = ({props}) => {
         } else{
             setCantidadProductos( () => parseInt(cantidadProductos) - 6)
         }
-    }
+    };
 
     const alternarSuccess = () => {
         setBtnSuccess(true)
@@ -35,61 +37,21 @@ const ItemDetail = ({props}) => {
         setTimeout(() => {
             setBtnSuccess(false)
         }, 1500)
-    }
+    };
 
     const goToCartBtnShow = () => setShowGoToCart(true);
 
-    const GoToCartRedirect = () => history.push('/cart')
+    const GoToCartRedirect = () => history.push('/cart');
 
-    const reducer = (acumulador, valor) => {return acumulador + valor.item.cantidadProductos}
-
-    const posicionProducto = data.items.findIndex(item => item.id === props.id)
-
-    let cantidadProductosTotal = data.items.reduce(reducer, 0);
-    
     const onAdd = () => {
         alternarSuccess();
-
-        if(data.items.find(item => item.id === props.id)){
-
-
-            data.items[posicionProducto].item.cantidadProductos = data.items[posicionProducto].item.cantidadProductos + cantidadProductos
-
-            let precioProduct = Number(data.items[posicionProducto].item.precioTotal + (cantidadProductos * (props.item.precio/6))).toFixed(2);
-
-            data.items[posicionProducto].item.precioTotal = Number(precioProduct);
-            data.cantidad = cantidadProductosTotal + cantidadProductos
-
-            setData({...data})
-
-            setStock(() => stock - cantidadProductos)
-        
-        } else {
-
-            props.item.cantidadProductos = cantidadProductos;
-            props.item.precioTotal = cantidadProductos * (props.item.precio/6);
-
-            setData({...data, 
-                items: [...data.items, props],
-                cantidad: cantidadProductosTotal + cantidadProductos
-            });
-
-            setStock(() => stock - cantidadProductos)
-        };
+        agregarAlCarrito(props, cantidadProductos)
         setCantidadProductos(0);
     };
     
-    
-    
     useEffect(() => {
-        if(data.items[posicionProducto]){
-            if(data.items[posicionProducto].id) {
-                setStock(() => stock - data.items[posicionProducto].item.cantidadProductos)
-            }
-        } else {
-            setStock(() => props.item.stock)
-        }
-    }, [])
+        setearStock(props);
+    }, [producto_id, props]);
 
     return (
         <div className="itemDetail">
@@ -123,7 +85,7 @@ const ItemDetail = ({props}) => {
                 
                         <button className="itemDetail__wrapper__variants__options-itemCount"
                         onClick={itemCountSuma}
-                        disabled={cantidadProductos == stock? "disabled" : null}
+                        disabled={cantidadProductos === parseFloat(stock)? "disabled" : null}
                         >+</button>
                     </div>
                 </div>
@@ -132,7 +94,7 @@ const ItemDetail = ({props}) => {
                 </div>
                 <div className="itemDetail__wrapper__buy">
                     <button
-                    disabled={btnSuccess || stock == 0  ? 'disabled' : null}
+                    disabled={btnSuccess || stock === 0 || cantidadProductos === 0  ? 'disabled' : null}
                     onClick={onAdd}
                     className={btnSuccess ? "success" : ""}
                     >{btnSuccess ? "Agregado con éxito" : "Agregar al carrito"}</button>
@@ -146,6 +108,6 @@ const ItemDetail = ({props}) => {
             </div>
         </div>
     )
-}
+};
 
 export default ItemDetail;

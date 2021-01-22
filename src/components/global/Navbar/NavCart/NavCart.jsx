@@ -1,10 +1,11 @@
 import {useContext, useEffect, useState} from 'react';
 
-import {Store} from '../../../../store/index';
+import {StoreContext} from '../../../../store/storeContext';
 
 const CardWidget = ({showHide}) => {
 
-    const [data, setData] = useContext(Store);
+    const storeContext = useContext(StoreContext)
+    const {data} = storeContext;
 
     const [productOnCart, setProductOnCart] = useState("");
     const [dataUp, setDataUp] = useState("");

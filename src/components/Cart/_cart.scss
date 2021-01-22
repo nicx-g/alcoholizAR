@@ -61,16 +61,27 @@
                 flex-direction: column;
                 justify-content: space-evenly;
 
-                i{
-                    color: map-get($map: $colors, $key: secondary);
-                    cursor: pointer;
-                    font-size: 1.3rem;
-                    margin: 10px 0;
-                    transition: all .3s ease-in-out;
+                button{
+                    appearance: none;
+                    background-color: transparent;
+                    border: 0;
+                    outline: none;
 
-                    &:hover{
-                        transform: translateX(-5px);
+                    &:disabled{
+                        opacity: 0.3;
                     }
+
+                    i{
+                        color: map-get($map: $colors, $key: secondary);
+                        cursor: pointer;
+                        font-size: 1.3rem;
+                        margin: 10px 0;
+                        transition: all .3s ease-in-out;
+    
+                        &:hover{
+                            transform: translateX(-5px);
+                        }
+                    }       
                 }
             }
         }
