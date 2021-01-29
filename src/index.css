@@ -17,6 +17,7 @@ body::before {
   background-size: 300px 300px;
   left: 0;
   height: 100%;
+  margin-top: -100px;
   position: absolute;
   opacity: .2;
   top: 0;

@@ -57,7 +57,7 @@ const Cart = () => {
                     }) : 
                     <div className="sinProductos">
                         <h2>Parece que no tenés ninguna cerveza agregada al carrito, vamos a descubrirlas!</h2>
-                        <Link to='/productos'>Hacé click acá para ver todos los productos</Link>
+                        <Link to='/'>Hacé click acá para ver todos los productos</Link>
                     </div>}
                 </div>
                 <div className="cart__totalPrice">
@@ -68,7 +68,7 @@ const Cart = () => {
                         <button onClick={() => limpiarCarrito()}>Vaciar carrito</button>
                     </div>
                     <div className="cart__actions__finish">
-                        <button>Siguiente</button>
+                        <Link to='/checkout'>Siguiente</Link>
                     </div>
                 </div>
             </Container>

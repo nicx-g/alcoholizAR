@@ -1,0 +1,472 @@
+.checkout{
+    background-image: linear-gradient(45deg, 
+    transparentize(map-get($colors, secondary), .5), 
+    transparentize(map-get($colors, quaternary), .8));
+    box-shadow: 5px 5px 10px map-get($map: $colors, $key: primary);
+    backdrop-filter: blur(2px);
+    height: 100%;
+    margin: 30px 0;
+    margin-top: 150px;
+    padding: 40px 0;
+    width: 80vw;
+
+    &__datosBasicosUsuario{
+        margin: 0 auto;
+        width: 35%;
+
+        // Quiero aclarar que soy una persona seria aunque no lo parezca
+
+        &.adios{
+            animation: 1.2s ease-out forwards chauAhre
+        }
+        &.hola{
+            animation: 1s ease-out forwards holaAhre
+        }
+        &.hidden{
+            position: absolute;
+            top: -1000px;
+        }
+
+        &__form{
+            display: flex;
+            flex-direction: column;
+
+            label{
+                font-size: 1rem;
+                font-weight: 500;
+                margin: 10px 0 5px;
+            }
+            input{
+                border: 1px solid transparent;
+                border-radius: 5px;
+                box-shadow: 5px 5px 10px transparentize(map-get($map: $colors, $key: primary), .5);
+                font-size: .8rem;
+                outline: none;
+                padding: 10px 20px;
+                transition: all .3s ease-in;
+
+                &.error{
+                    border: 1px solid map-get($map: $colors, $key: tertiary);
+                    box-shadow: none;
+                    color: map-get($map: $colors, $key: tertiary)
+                }
+
+                &.exito{
+                    border: 1px solid rgb(79, 221, 143);
+                    color: rgb(6, 177, 83);
+                }
+
+                &:focus{
+                    border: 1px solid map-get($map: $colors, $key: quaternary);
+                }
+            }
+
+            button{
+                background-color: transparent;
+                border: 0;
+                border-radius: 999px;
+                box-shadow: 3px 3px 10px;
+                color: map-get($map: $colors, $key: primary);
+                cursor: pointer;
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin: 30px 0 0;
+                outline: none;
+                padding: 10px 20px;
+                transition: all .3s ease-in;
+
+                &:hover{
+                    background-color: map-get($map: $colors, $key: primary);
+                    color: map-get($map: $colors, $key: secondary);
+                }
+            }
+
+            p{
+                background-color: rgb(255, 218, 218);
+                border: 2px solid red;
+                border-radius: 10px;
+                color: rgb(255, 0, 0);
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 30px auto;
+                margin-bottom: 0;
+                padding: 20px 40px;
+                text-align: center;
+                width: 300px;
+            }
+        }
+    }
+
+    &__pagoDireccionUsuario{
+        margin: 0 auto;
+
+        // Quiero aclarar que soy una persona seria aunque no lo parezca
+
+        &.adios{
+            animation: 1.2s ease-out forwards chauAhre
+        }
+        &.hola{
+            animation: 1s ease-out forwards holaAhre
+        }
+        &.hidden{
+
+            position: absolute;
+            top: -1000px;
+        }
+
+        &__form{
+
+            &__error{
+                background-color: rgb(255, 218, 218);
+                border: 2px solid red;
+                border-radius: 10px;
+                color: rgb(255, 0, 0);
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 30px auto;
+                margin-bottom: 0;
+                padding: 20px 40px;
+                text-align: center;
+                width: 300px;
+            }
+           
+            &__tarjeta{
+                display: flex;
+                justify-content: center;
+
+                &__imagen{
+                    height: 200px;
+                    margin: 0 30px;
+                    position: relative;
+                    width: 350px;
+
+                    &:focus {
+                        .checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente.cara {
+                            transform: rotateY(180deg)
+                        }
+            
+                        .checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso.cara{
+                            transform: rotateY(360deg)
+                        }
+                   }
+
+                    &__frente, &__reverso{
+
+                        &.cara{
+                            background-color: map-get($map: $colors, $key: primary);
+                            backface-visibility: hidden;
+                            box-shadow: 5px 5px 10px map-get($map: $colors, $key: primary);
+                            border-radius: 15px;
+                            left: 0;
+                            height: 100%;
+                            position: absolute;
+                            top: 0;
+                            transition: all .7s linear;
+                            width: 100%;
+                        }
+                    }
+
+                    &__frente{
+
+                        &.cara{
+
+                            &.rotado{
+                                transform: rotateY(180deg);
+                            }
+                        }
+
+                        p {
+                            color: map-get($map: $colors, $key: secondary);
+                            position: absolute;
+                        }
+
+                        &-numeroTarjeta{
+                            line-height: 1rem;
+                            left: 20%;
+                            letter-spacing: 3px;
+                            top: 50%;
+                        }
+
+                        &-chip{
+                            background-color: moccasin;
+                            height: 30px;
+                            position: absolute;
+                            left: 3%;
+                            top: 50%;
+                            width: 40px;
+
+                            &::before{
+                                background-color: black;
+                                content: "";
+                                display:block;
+                                height: 1px;
+                                position: relative;
+                                top: 20px;
+                                left: 0;
+                                width: 40px;
+                            }
+
+                            &::after{
+                                background-color: black;
+                                content: "";
+                                display: block;
+                                height: 1px;
+                                position: relative;
+                                top: 10px;
+                                left: 0;
+                                width: 40px;
+                            }
+                        }
+
+                        &-banco{
+                            left: 5%;
+                            top: 10%;
+                        }
+
+                        &-tipo{
+                            top: 83%;
+                            right: 4%;
+                        }
+
+                        &-vencimiento{
+                            left: 20%;
+                            top: 60%;
+                        }
+                        
+                        &-titular{
+                            left: 20%;
+                            top: 70%;
+                        }
+                    }
+
+                    &__reverso{
+                        transform: rotateY(180deg);
+
+                        &.cara{
+
+                            &.rotado{
+                                transform: rotateY(360deg);
+                            }
+                        }
+
+                        p{
+                            color: map-get($map: $colors, $key: secondary);
+                            position: absolute;
+                        }
+
+                        &-textoRelleno{
+                            font-size: .7rem;
+                            top: 60%;
+                            left: 5%;
+                        }
+
+                        &-textoFirma{
+                            left: 40%;
+                            top: 28%;
+                        }
+
+                        &-codigo{
+                            background-color: map-get($map: $colors, $key: secondary);
+                            color: map-get($map: $colors, $key: primary);
+                            font-weight: bold;
+                            left: 78%;
+                            padding: 5px;
+                            position: absolute;
+                            top: 39%;
+                        }
+
+                        &-firma{
+                            background-color: map-get($map: $colors, $key: secondary);
+                            height: 25px;
+                            left: 10%;
+                            top: 40%;
+                            width: 70%;
+                        }
+
+                        &-banda{
+                            background-color: map-get($map: $colors, $key: secondary);
+                            height: 35px;
+                            width: 100%;;
+                            top: 10%;
+                        }
+                    }
+                }
+
+                &__campos{
+                    display: flex;
+                    flex-direction: column;
+
+                    label{
+                        font-size: 1rem;
+                        font-weight: 500;
+                        margin: 10px 0 5px;
+                    }
+
+                    div {
+                        display: flex;
+                        justify-content: space-evenly;
+
+                        div{
+                            display: flex;
+                            flex-direction: column;
+                            margin: 0 5px;
+                            width: calc(50% - 5px);
+                        }
+                    }
+                    input{
+                        border: 1px solid transparent;
+                        border-radius: 5px;
+                        box-shadow: 5px 5px 10px transparentize(map-get($map: $colors, $key: primary), .5);
+                        font-size: .8rem;
+                        outline: none;
+                        padding: 10px 20px;
+                        transition: all .3s ease-in;
+        
+                        &.error{
+                            border: 1px solid map-get($map: $colors, $key: tertiary);
+                            box-shadow: none;
+                            color: map-get($map: $colors, $key: tertiary)
+                        }
+        
+                        &.exito{
+                            border: 1px solid rgb(79, 221, 143);
+                            color: rgb(6, 177, 83);
+                        }
+        
+                        &:focus{
+                            border: 1px solid map-get($map: $colors, $key: quaternary);
+                        }
+                    }
+        
+                    button{
+                        background-color: transparent;
+                        border: 0;
+                        border-radius: 999px;
+                        box-shadow: 3px 3px 10px;
+                        color: map-get($map: $colors, $key: primary);
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        margin: 30px 0 0;
+                        outline: none;
+                        padding: 10px 20px;
+                        transition: all .3s ease-in;
+        
+                        &:hover{
+                            background-color: map-get($map: $colors, $key: primary);
+                            color: map-get($map: $colors, $key: secondary);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    &__compraFinalizada{
+        align-items:center;
+        animation: holaAhrex2 1s ease-in-out forwards;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        height: 200px;
+        margin: 0 auto;
+        width: 400px;
+
+        &.hidden{
+            display: none;
+        }
+
+        p{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        &-textoPrincipal{
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        &-orden{
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        a{
+            color: map-get($map: $colors, $key: quaternary);
+            font-size: 1.3rem;
+            text-decoration: none;
+            text-align: center;
+        }   
+    }
+}
+
+.noItems{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 50px;
+
+    &__vendor{
+        align-items: center;
+        border: 2px map-get($map: $colors, $key: primary) solid;
+        border-radius: 5px;
+        backdrop-filter: blur(1px);
+        box-shadow: 5px 5px 10px map-get($map: $colors, $key: primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 50px;
+
+        h3, a{
+            color: map-get($map: $colors, $key: primary);
+            font-size: 1.3rem;
+            font-weight: bold; 
+            margin: 5px 0;
+            text-align: center;
+            width: 500px;
+        }
+    
+        a{
+            color: map-get($map: $colors, $key: quaternary);
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+    }
+}
+
+.cargandoPago{
+    background-color: transparentize(map-get($map: $colors, $key: secondary), .5);
+    backdrop-filter: blur(5px);
+    display:none;
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    z-index: 99999999999;
+
+    &.show{
+        display: block
+    }
+}
+
+// Quiero aclarar que soy una persona seria aunque no lo parezca
+
+@keyframes chauAhre {
+    0%{opacity: 1; transform: translateX(0) scale(1)};
+    95%{opacity: 0; transform: translateX(-500px) scale(0);}
+    100%{opacity: 0; transform: translateX(-500px) scale(0); position: absolute; top: -1000px; z-index: -1;}
+}
+
+@keyframes holaAhre{
+    0%{opacity: 0; transform: translateX(500px) scale(0);}
+    100%{opacity: 1; transform: translateX(0) scale(1)};
+}
+
+@keyframes holaAhrex2{
+    0%{opacity:0; transform: scale(0)}
+    80%{opacity:1; transform: scale(1.3)}
+    100%{opacity:1; transform: scale(1)}
+}

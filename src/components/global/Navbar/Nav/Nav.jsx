@@ -20,11 +20,6 @@ const Nav = () => {
                         <NavLink to="/">
                             <img src="https://loremflickr.com/200/80" alt="Logo de la página"/>
                         </NavLink>
-                        <ul>
-                            <li><NavLink activeClassName="link-active" to="/productos">Ver productos</NavLink></li>
-                            <li><NavLink activeClassName="link-active" to="/como-funciona">Cómo funciona</NavLink></li>
-                            <li><NavLink activeClassName="link-active" to="/zonas-de-entrega">Zonas de entrega</NavLink></li>
-                        </ul>
                     </div>
                     <div className="nav__actions">
                         <form className="nav__actions__search">

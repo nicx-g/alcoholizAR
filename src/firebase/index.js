@@ -10,9 +10,13 @@ const app = firebase.initializeApp({
     appId: "1:1015697010207:web:456da5872db0ff829f2f2a"
 });
 
-export function getFirebase() {
+export function getFirebaseApp() {
     return app
 };
+
+export function getFirebase() {
+    return firebase
+}
 
 export function getFirestore() {
     return firebase.firestore(app);

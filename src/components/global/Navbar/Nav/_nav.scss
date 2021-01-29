@@ -10,7 +10,6 @@ header{
     align-items: center;
     background-color: map-get($map: $colors, $key: primary );
     display: flex;
-    justify-content: space-between;
     padding: 20px;
     
     &__menu{
@@ -74,19 +73,24 @@ header{
     &__actions{
         display:flex;
         align-items: center;
+        width: 100%;
 
         &__search{
             display:flex;
+            margin: 0 70px;
+            width: 100%;
 
             input{
                 border-top-left-radius: 20px;
                 border-bottom-left-radius: 20px;
                 border: 1px solid map-get($map: $colors, $key: secondary);
                 font-family: 'Quicksand', sans-serif;
+                font-size: 1rem;
                 font-weight: 500;
-                padding: 5px 10px;
+                padding: 10px 20px;
                 outline: none;
                 transition: ease-in all .3s;
+                width: 100%;
 
                 &:focus, &:hover{
                     border: 1px solid map-get($map: $colors, $key: quaternary)

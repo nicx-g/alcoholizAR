@@ -6,12 +6,8 @@ import ItemDetail from '../ItemDetail/ItemDetail';
 import ProductosRecomendados from '../ProductosRecomendados/ProductosRecomendados';
 import Container from '../../Global/Container/Container';
 import Preloader from '../../Global/Preloader/Preloader'
-import {StoreContext} from '../../../store/storeContext';
 
 const ItemDetailContainer = () => {
-
-    const storeContext = useContext(StoreContext);
-    const {data, stock, setStock, setData, setearStock} = storeContext
 
     const {producto_id} = useParams();
     const [itemDetail, setItemDetail] = useState(null)

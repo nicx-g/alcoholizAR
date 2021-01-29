@@ -102,12 +102,13 @@
     }
     
     &__actions{
+        align-items: center;
         margin: 10px 0;
         display: flex;
         justify-content: flex-end;
 
         &__emptyCart, &__finish{
-            button{
+            button, a{
                 background-color: map-get($map: $colors, $key: primary);
                 border: 0;
                 border-radius: 999px;
@@ -119,8 +120,10 @@
                 padding: 10px 20px;
                 outline: none;
                 text-align: center;
+                text-decoration: none;
                 transition: all .3s ease-in;
                 width: auto;
+
 
                 &:hover{
                     background: map-get($map: $colors, $key: quaternary);
