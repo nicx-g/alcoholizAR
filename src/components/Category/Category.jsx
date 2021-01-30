@@ -4,7 +4,7 @@ import {getFirestore} from '../../firebase/index';
 
 import ItemList from '../Products/ItemList/ItemList';
 import Preloader from '../Global/Preloader/Preloader';
-import ItemListContainer from '../Products/itemListContainer/ItemListContainer';
+import ItemListContainer from '../Products/ItemListContainer/ItemListContainer';
 import Container from '../Global/Container/Container';
 
 

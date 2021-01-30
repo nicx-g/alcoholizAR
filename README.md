@@ -11,16 +11,16 @@ Una vez hayas clonado el proyecto (git clone https://github.com/nicx-g/coder-rea
 
 ## Bibliotecas utilizadas
 
-⋅⋅* Ninguna. Puro (S)CSS papá. 
+* Ninguna. Puro (S)CSS papá. 
 
 ## Herramientas y frameworks
 
-..* SCSS.
-..* Firebase
-..* y bueno, React.
+* SCSS.
+* Firebase
+* y bueno, React.
 
 ## Si querés colaborar en el proyecto
 
-..* Usá la metodología Bem, nada más, las variables y demás nombres las escribí en Spanglish así que no puedo exigir nada
+* Usá la metodología Bem, nada más, las variables y demás nombres las escribí en Spanglish así que no puedo exigir nada
 
 ## Muchas gracias por leer!
