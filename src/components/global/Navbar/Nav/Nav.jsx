@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react'
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 import '../../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 import NavCart from '../NavCart/NavCart'
@@ -28,7 +28,7 @@ const Nav = () => {
                             <button><i className="fas fa-search"></i></button>
                         </form>
                         <div className="nav__actions__login">
-                            <button>Ingresar</button>
+                            <Link to='/mi-orden'>Ver mi orden</Link>
                         </div>
                         <NavCart showHide={() => setShowCartWidget(!showCartWidget)} />
                     </div>

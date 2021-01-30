@@ -8,6 +8,7 @@ import Footer from './components/Global/Footer/Footer';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import StoreProvider from './store/storeContext';
+import Ordenes from './components/Ordenes/Ordenes';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <BrowserRouter>
             
                 <Nav />
+                <CategoriesNav />
                 
                 <Switch>
                     <Route exact path="/">
@@ -26,8 +28,15 @@ function App() {
                         <Redirect to="/productos"/>
                     </Route>
 
+                    <Route path="/home">
+                        <Redirect to="/productos"/>
+                    </Route>
+
+                    <Route path="/inicio">
+                        <Redirect to="/productos"/>
+                    </Route>
+
                     <Route path="/productos/:productos_cerveza?">
-                        <CategoriesNav />
                         <Category />
                     </Route>
 
@@ -41,6 +50,10 @@ function App() {
 
                     <Route path="/checkout">
                         <Checkout />
+                    </Route>
+
+                    <Route path="/mi-orden">
+                        <Ordenes />
                     </Route>
                 </Switch>
                 

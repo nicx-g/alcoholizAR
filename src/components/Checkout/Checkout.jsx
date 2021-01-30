@@ -64,7 +64,8 @@ const Checkout = () => {
         dataUsuario: usuarioData,
         productos: data.items,
         montoTotal: precioTotal,
-        fecha: firebase.firestore.Timestamp.fromDate(new Date())
+        fecha: firebase.firestore.Timestamp.fromDate(new Date()),
+        estado: "pendiente"
     };
 
     const [ordenId, setOrdenId] = useState('');
