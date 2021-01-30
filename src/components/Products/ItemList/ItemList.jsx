@@ -25,7 +25,7 @@ const ItemList = ({productsArray, productsCategory}) => {
                                 <span>El precio es: ${product.data.precio}</span>
                             </div>
                             <div className="itemList__detail">
-                                <Link to={`/detail/${product.id}`}>Ver producto</Link>
+                                <Link to={`/${product.data.categoria}/${product.id}`}>Ver producto</Link>
                             </div>
                         </div>
                     )

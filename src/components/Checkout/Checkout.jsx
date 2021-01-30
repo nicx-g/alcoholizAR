@@ -8,7 +8,7 @@ import Preloader from '../Global/Preloader/Preloader';
 
 const Checkout = () => {
     const storeContext = useContext(StoreContext)
-    const {data, setPrecioTotal, precioTotal} = storeContext
+    const {data, setPrecioTotal, precioTotal, setData} = storeContext
 
     const firebase = getFirebase();
     const db = getFirestore();
@@ -223,6 +223,13 @@ const Checkout = () => {
                     console.log(error);
                 })
 
+                setData({
+                    cantidad: 0,
+                    items: []
+                })
+
+                console.log(utils)
+
             }, 2000)
             console.log(usuarioData)
             console.log(infoPago)
@@ -242,7 +249,7 @@ const Checkout = () => {
 
     return (
         <>
-        {data.items.length >= 1?
+        {data.items.length >= 1 || utils.pagoTerminado == true?
 
             <Container>
                 <div className="checkout">

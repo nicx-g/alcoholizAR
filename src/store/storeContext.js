@@ -1,4 +1,5 @@
-import {createContext, useState} from 'react';
+import {createContext, useState, useEffect} from 'react';
+import {getFirestore} from '../firebase/index';
 
 export const StoreContext = createContext();
 
@@ -10,6 +11,8 @@ const StoreProvider = ({children}) => {
     });
     const [stock, setStock] = useState(null);
     const [precioTotal, setPrecioTotal] = useState(0);
+    const db = getFirestore();
+    const [productosVendidos, setProductosVendidos] = useState(null);
 
     const agregarAlCarrito = (producto, cantidadProductos) => {
         
@@ -67,17 +70,36 @@ const StoreProvider = ({children}) => {
             cantidad: cantidadProductosTotal
         })
     };
-    
-    const setearStock = producto => {
 
+    const getProductosVendidos = () => {
+        db.collection('ordenes').onSnapshot((docs) => {
+            let arr = []
+            docs.forEach((item) => {
+                item.data().productos.forEach((producto) => {
+                    arr.push(producto)
+                })
+            })
+            setProductosVendidos(arr)
+        })
+    }
+
+    useEffect(() => {
+        getProductosVendidos()
+    }, [])
+    
+    const setearStock = (producto, productosVendidos) => {
+
+        debugger
         const posicionProducto = data.items.findIndex(item => item.id === producto.id);
+        let productoActualVendido = productosVendidos ? productosVendidos.filter(item => item.id === producto.id) : null
+        let cantidadProductosVendidos = productoActualVendido ? productoActualVendido.reduce((acumulador, producto) => {return acumulador + producto.item.cantidadProductos}, 0) : null
         
         if(data.items[posicionProducto]){
             if(data.items[posicionProducto].id) {
-                setStock(producto.item.stock - data.items[posicionProducto].item.cantidadProductos);
+                setStock(producto.item.stock - data.items[posicionProducto].item.cantidadProductos - cantidadProductosVendidos);
             }
         } else {
-            setStock(producto.item.stock)
+            setStock(producto.item.stock - cantidadProductosVendidos)
         }
     };
 
@@ -136,7 +158,8 @@ const StoreProvider = ({children}) => {
             limpiarCarrito,
             restarProductos,
             agregarAlCarrito,
-            sumarMasProductos
+            sumarMasProductos,
+            productosVendidos,
         }}>
             {children}
         </StoreContext.Provider>

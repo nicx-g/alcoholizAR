@@ -7,7 +7,7 @@ import {StoreContext} from '../../../store/storeContext';
 const ItemDetail = ({props}) => {
 
     const storeContext = useContext(StoreContext);
-    const {stock, setearStock, agregarAlCarrito} = storeContext;
+    const {data, stock, setearStock, agregarAlCarrito, productosVendidos} = storeContext;
     const history = useHistory();
     const {producto_id} = useParams();
     
@@ -50,8 +50,8 @@ const ItemDetail = ({props}) => {
     };
     
     useEffect(() => {
-        setearStock(props);
-    }, [producto_id, props]);
+        setearStock(props, productosVendidos);
+    }, [producto_id, props, productosVendidos, data]);
 
     return (
         <div className="itemDetail">

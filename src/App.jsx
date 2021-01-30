@@ -31,7 +31,7 @@ function App() {
                         <Category />
                     </Route>
 
-                    <Route path="/detail/:producto_id?">
+                    <Route path="/:productos_cerveza/:producto_id">
                         <ItemDetailContainer />
                     </Route>
 
