@@ -61,6 +61,15 @@
         height: 80%;
         overflow-y: scroll;
 
+        &__noItems{
+            border-left: 5px map-get($map: $colors, $key: quaternary) solid;
+            padding: 20px;
+
+            h2{
+                color: map-get($map: $colors, $key: secondary);
+            }
+        }
+
         &__item{
             display: flex;
             padding-bottom: 5px;

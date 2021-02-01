@@ -51,6 +51,8 @@ const ItemDetail = ({props}) => {
     
     useEffect(() => {
         setearStock(props, productosVendidos);
+        document.title=`${props.item.descripcion} | AlcoholizAR`
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [producto_id, props, productosVendidos, data]);
 
     return (

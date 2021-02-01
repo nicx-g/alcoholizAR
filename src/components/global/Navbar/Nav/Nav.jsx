@@ -17,7 +17,7 @@ const Nav = () => {
             <Container>
                 <nav className="nav">
                     <div className="nav__menu">
-                        <NavLink to="/">
+                        <NavLink to="/productos">
                             <img src="https://loremflickr.com/200/80" alt="Logo de la página"/>
                         </NavLink>
                     </div>

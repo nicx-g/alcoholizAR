@@ -20,7 +20,7 @@ const Checkout = () => {
         email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         telefono: /^\d{7,14}$/,
         numeroTarjeta: /^([0-9]{4}[\s]){3}([0-9]{4}){1}$/,
-        nombreTitular: /^([a-zA-Z]{2,40}\s){1,7}([a-zA-Z]{2,40}[^\s]){1}$/,
+        nombreTitular: /^([a-zA-Z]{2,40}\s){1,7}([a-zA-Z][^\d]{2,40}[^\s]){1}$/,
         codigoSeguridad: /^\d{3,4}$/,
     };
 
@@ -104,6 +104,8 @@ const Checkout = () => {
             case "codigoSeguridad":
                 validarInput(regexp.codigoSeguridad, e, true);
                 break;
+            default:
+                return;
         }
     };
 
@@ -149,12 +151,11 @@ const Checkout = () => {
 
     const validarFechaExp = e => {
         let hoy = new Date();
-        let mes = hoy.getMonth() + 1
-        let year = hoy.getFullYear().toString().slice(2)
-        let valueArray = e.target.value.split('/')
+        let mes = hoy.getMonth() + 1;
+        let year = hoy.getFullYear().toString().slice(2);
+        let valueArray = e.target.value.split('/');
 
-        if(valueArray[parseInt(1)] == parseInt(year) && valueArray[parseInt(0)] > parseInt(mes) && valueArray[parseInt(0)] <= 12){
-            console.log("joya")
+        if(parseInt(valueArray[1]) === parseInt(year) && parseInt(valueArray[0]) > parseInt(mes) && parseInt(valueArray[0]) <= 12){
             setCamposValidados({
                 ...camposValidados,
                 [e.target.name]: true
@@ -163,7 +164,7 @@ const Checkout = () => {
                 ...infoPago,
                 [e.target.name]: e.target.value
             })
-        } else if(valueArray[parseInt(1)] > parseInt(year) && valueArray[parseInt(0)] >= 1 && valueArray[parseInt(0)] <= 12){
+        } else if(parseInt(valueArray[1]) > parseInt(year) && parseInt(valueArray[1]) <= 99 && parseInt(valueArray[0]) >= 1 && parseInt(valueArray[0]) <= 12){
             setCamposValidados({
                 ...camposValidados,
                 [e.target.name]: true
@@ -215,8 +216,6 @@ const Checkout = () => {
                     loaderPago: false,
                 })
 
-                console.log(orden)
-
                 db.collection('ordenes').add(orden)
                 .then(({id}) => setOrdenId(id))
                 .catch(error => {
@@ -228,13 +227,7 @@ const Checkout = () => {
                     cantidad: 0,
                     items: []
                 })
-
-                console.log(utils)
-
             }, 2000)
-            console.log(usuarioData)
-            console.log(infoPago)
-
         } else{
             setUtils({
                 ...utils,
@@ -246,11 +239,13 @@ const Checkout = () => {
 
     useEffect(() => {
         setPrecioTotal(data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2))
+        document.title='Checkout | AlcoholizAR';
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <>
-        {data.items.length >= 1 || utils.pagoTerminado == true?
+        {data.items.length >= 1 || utils.pagoTerminado === true?
 
             <Container>
                 <div className="checkout">

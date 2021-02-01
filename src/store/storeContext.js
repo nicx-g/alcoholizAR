@@ -11,8 +11,8 @@ const StoreProvider = ({children}) => {
     });
     const [stock, setStock] = useState(null);
     const [precioTotal, setPrecioTotal] = useState(0);
-    const db = getFirestore();
     const [productosVendidos, setProductosVendidos] = useState(null);
+    const db = getFirestore();
 
     const agregarAlCarrito = (producto, cantidadProductos) => {
         
@@ -85,11 +85,11 @@ const StoreProvider = ({children}) => {
 
     useEffect(() => {
         getProductosVendidos()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const setearStock = (producto, productosVendidos) => {
 
-        debugger
         const posicionProducto = data.items.findIndex(item => item.id === producto.id);
         let productoActualVendido = productosVendidos ? productosVendidos.filter(item => item.id === producto.id) : null
         let cantidadProductosVendidos = productoActualVendido ? productoActualVendido.reduce((acumulador, producto) => {return acumulador + producto.item.cantidadProductos}, 0) : null

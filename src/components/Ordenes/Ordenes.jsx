@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {getFirestore} from '../../firebase/index';
 
 import Container from '../Global/Container/Container';
@@ -38,7 +38,6 @@ const Ordenes = () => {
                     ordenNoExistente: false,
                     loading: false
                 })
-                console.log(order)
             }
             else{
                 setUtils({
@@ -48,6 +47,11 @@ const Ordenes = () => {
             }
         })
     }
+
+    useEffect(() => {
+        document.title= 'Ordenes | AlcoholizAR'
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return(
         <Container>
@@ -67,7 +71,7 @@ const Ordenes = () => {
                     <p>No se encontró la orden seleccionada. ¿Ingresó bien el número?</p>
                 </div>
                 </div>
-                {order.id && utils.ordenNoExistente == false? 
+                {order.id && utils.ordenNoExistente === false? 
                     <div className="ordenes__estado">
                     <div className="ordenes__estado__vendor">
                         <h2>Número de seguimiento: {order.id}</h2>

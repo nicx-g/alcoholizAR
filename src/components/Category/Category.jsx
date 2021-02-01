@@ -35,7 +35,12 @@ const Category = () => {
 
     useEffect(() => {
         getProductsFromDb();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+        document.title= productos_cerveza ? `${productos_cerveza} | AlcoholizAR` : 'AlcoholizAR';
+    }, [productos_cerveza])
     
     return (
         <div className="productos">

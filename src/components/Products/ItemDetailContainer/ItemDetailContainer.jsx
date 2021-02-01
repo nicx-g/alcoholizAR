@@ -1,4 +1,4 @@
-import {useEffect, useState, useContext} from 'react' 
+import {useEffect, useState} from 'react' 
 import {useParams} from 'react-router-dom';
 import {getFirestore} from '../../../firebase/index';
 
@@ -12,23 +12,26 @@ const ItemDetailContainer = () => {
     const {producto_id} = useParams();
     const [itemDetail, setItemDetail] = useState(null)
     const db = getFirestore();
+    const [productoNoEncontrado, setProductoNoEncontrado] = useState(false);
 
     useEffect(() => {
         db.doc(`productos/${producto_id}`).get()
         .then(item => {
             if (item.exists){
+                setProductoNoEncontrado(false)
                 setItemDetail({
                     item: item.data(),
                     id: item.id
                 })
             } else {
-                alert('Todavía no tenemos este producto, te habrás equivocado? si no es así, pronto lo tendremos!')
+                setProductoNoEncontrado(true)
             }
         })
         .catch(error => {
             alert('Algo salió mal, revisá tu conexión o volvelo a intentar más tarde')
             console.log(error)
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [producto_id])
     
     return (
@@ -40,13 +43,21 @@ const ItemDetailContainer = () => {
                     </div>
                     <div className="itemDetailContainer__wrapper__itemDetail">
                        {
+                           !productoNoEncontrado ?
                             itemDetail ?
                             <ItemDetail
                             props={itemDetail}
                             /> :
                             <Preloader
                             texto="Cargando producto"
-                            />
+                            /> :
+                            <div className="itemDetailContainer__wrapper__itemDetail__wrapper">
+                                <div className="itemDetailContainer__wrapper__itemDetail__wrapper__noResult">
+                                    <h2>Parece que no existe el producto que estás buscando :(</h2>
+                                    <p>Te recomendamos que mires los productos que se encuentran más abajo si son de tu interés!</p>
+                                    <i className="fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
                        }
                     </div>
                     <div className="itemDetailContainer__wrapper__productosRecomendados">

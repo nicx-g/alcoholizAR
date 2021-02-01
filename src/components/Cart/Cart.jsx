@@ -11,7 +11,14 @@ const Cart = () => {
 
     useEffect(() => {
         setPrecioTotal(data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, data.items])
+
+    useEffect(() => {
+        document.title=' Mi carrito | AlcoholiZAR'
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    }, [])
 
     return (
         <div className="cart">

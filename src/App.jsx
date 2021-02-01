@@ -9,6 +9,7 @@ import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import StoreProvider from './store/storeContext';
 import Ordenes from './components/Ordenes/Ordenes';
+import Error404 from './components/404/404';
 
 function App() {
 
@@ -54,6 +55,10 @@ function App() {
 
                     <Route path="/mi-orden">
                         <Ordenes />
+                    </Route>
+
+                    <Route path="*">
+                        <Error404 />
                     </Route>
                 </Switch>
                 

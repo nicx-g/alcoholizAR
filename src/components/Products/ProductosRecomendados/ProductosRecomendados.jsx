@@ -32,6 +32,7 @@ const ProductosRecomendados = () => {
     
      useEffect(() => {
         getItemsFromDb();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

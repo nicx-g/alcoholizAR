@@ -10,8 +10,8 @@ const ItemList = ({productsArray, productsCategory}) => {
     return (
         <>
             {
-                productItems ?
-                productItems.length && productItems.map((product) => {
+                productItems.length > 1 ?
+                productItems.map((product) => {
                     return (
                         <div key={product.id} className="itemList">
                             <div className="itemList__image">
@@ -30,7 +30,9 @@ const ItemList = ({productsArray, productsCategory}) => {
                         </div>
                     )
                 }) :
-                <Preloader texto="Cargando productos..." />
+                <div className="noItems">
+                    <h2>No se encontraron productos en esta categoría :(</h2>
+                </div>
             }
         </>
     )

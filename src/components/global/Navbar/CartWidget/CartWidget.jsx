@@ -18,7 +18,8 @@ const CartWidget = ({showHide}) => {
                 </div>
 
                 <div className="cartWidget__items">
-                    {data.items.map(item => {
+                    {data.items.length >= 1 ?
+                     data.items.map(item => {
                         return (
                             <div className="cartWidget__items__item" key={item.id}>
                                 <div className="cartWidget__items__item__wrapper">
@@ -39,7 +40,11 @@ const CartWidget = ({showHide}) => {
                                 </div>
                             </div>
                         )
-                    })}
+                    }) :
+                    <div className="cartWidget__items__noItems">
+                        <h2>¿Qué vamos a tomar hoy? ¿Una Patagonia te viene bien?</h2>
+                    </div>
+                    }
                     
                 </div>
 
