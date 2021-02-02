@@ -1,0 +1,20 @@
+.productosRecomendados {
+    padding: 40px 0;
+
+    &__vendor{
+        margin: 20px 0;
+        
+        h1{
+            color: map-get($map: $colors, $key: primary);
+            font-size: 1.7rem;
+            text-align: center;
+        }
+    }
+    
+    &__itemList{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
+}

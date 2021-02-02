@@ -84,8 +84,8 @@ const Ordenes = () => {
                         <div className="ordenes__estado__productos__wrapper">
                         {order.data.productos.map(item => {
                             return (
-                                <div className="ordenes__estado__productos__wrapper__item">
-                                    <img src="https://loremflickr.com/50/100" alt="producto"/>
+                                <div className="ordenes__estado__productos__wrapper__item" key={item.id}>
+                                    <img src={`/resources/images/${item.item.foto}`} alt={item.item.descripcion}/>
                                     <div className="ordenes__estado__productos__wrapper__item__vendor">
                                         <h4>{item.item.titulo}</h4>
                                         <p>{item.item.descripcion}</p>
