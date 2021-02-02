@@ -7,17 +7,11 @@ import Container from '../Global/Container/Container';
 const Cart = () => {
 
     const storeContext = useContext(StoreContext)
-    const {data, limpiarCarrito, precioTotal, setPrecioTotal, deleteOnCart, sumarMasProductos, restarProductos} = storeContext;
-
-    useEffect(() => {
-        setPrecioTotal(data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data, data.items])
+    const {data, limpiarCarrito, deleteOnCart, sumarMasProductos, restarProductos, productosVendidos} = storeContext;
 
     useEffect(() => {
         document.title=' Mi carrito | AlcoholiZAR'
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
     }, [])
 
     return (
@@ -30,10 +24,14 @@ const Cart = () => {
                 <div className="cart__wrapperItems">
                     {data.items.length >= 1 ? 
                     data.items.map(prod => {
+
+                        let productoActualVendido = productosVendidos ? productosVendidos.filter(item => item.id === prod.id) : null
+                        let cantidadProductosVendidos = productoActualVendido ? productoActualVendido.reduce((acumulador, producto) => {return acumulador + producto.item.cantidadProductos}, 0) : null
+
                         return (
                             <div className="cart__wrapperItems__item" key={prod.id}>
                         <div className="cart__wrapperItems__item__pic">
-                            <img src="https://loremflickr.com/150/150" alt=""/> 
+                            <img src={`/resources/images/${prod.item.foto}`} alt={prod.item.descripcion}/> 
                         </div>
                         <div className="cart__wrapperItems__item__vendor">
                             <h3 className="cart__wrapperItems__item__vendor-title">{prod.item.titulo}</h3>
@@ -43,8 +41,8 @@ const Cart = () => {
                         </div>
                         <div className="cart__wrapperItems__item__actions">
                             <button
-                            disabled={prod.item.cantidadProductos === prod.item.stock ? "disabled" : null}
-                            onClick={() => sumarMasProductos(prod)}>
+                            disabled={prod.item.cantidadProductos === (prod.item.stock - cantidadProductosVendidos) ? "disabled" : null}
+                            onClick={() => sumarMasProductos(prod, productosVendidos)}>
                                 <i className="far fa-plus-square"></i>
                             </button>
                             <button
@@ -68,7 +66,7 @@ const Cart = () => {
                     </div>}
                 </div>
                 <div className="cart__totalPrice">
-                    <p>${precioTotal} ARS</p>
+                    <p>${data.precioTotal} ARS</p>
                 </div>
                 <div className="cart__actions">
                     <div className="cart__actions__emptyCart">

@@ -399,42 +399,44 @@
             text-align: center;
         }   
     }
-}
 
-.noItems{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding: 50px;
-
-    &__vendor{
+    &__noItems{
         align-items: center;
-        border: 2px map-get($map: $colors, $key: primary) solid;
-        border-radius: 5px;
-        backdrop-filter: blur(1px);
-        box-shadow: 5px 5px 10px map-get($map: $colors, $key: primary);
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        margin: auto;
         padding: 50px;
-
-        h3, a{
-            color: map-get($map: $colors, $key: primary);
-            font-size: 1.3rem;
-            font-weight: bold; 
-            margin: 5px 0;
-            text-align: center;
-            width: 500px;
-        }
     
-        a{
-            color: map-get($map: $colors, $key: quaternary);
-            font-size: 1.3rem;
-            text-decoration: none;
+        &__vendor{
+            align-items: center;
+            border: 2px map-get($map: $colors, $key: primary) solid;
+            border-radius: 5px;
+            backdrop-filter: blur(1px);
+            box-shadow: 5px 5px 10px map-get($map: $colors, $key: primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+    
+            h3, a{
+                color: map-get($map: $colors, $key: primary);
+                font-size: 1.3rem;
+                font-weight: bold; 
+                margin: 5px 0;
+                text-align: center;
+                width: 500px;
+            }
+        
+            a{
+                color: map-get($map: $colors, $key: quaternary);
+                font-size: 1.3rem;
+                text-decoration: none;
+            }
         }
     }
 }
+
+
 
 .cargandoPago{
     background-color: transparentize(map-get($map: $colors, $key: secondary), .5);

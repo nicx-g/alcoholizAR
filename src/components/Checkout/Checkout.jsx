@@ -8,7 +8,7 @@ import Preloader from '../Global/Preloader/Preloader';
 
 const Checkout = () => {
     const storeContext = useContext(StoreContext)
-    const {data, setPrecioTotal, precioTotal, setData} = storeContext
+    const {data, setData} = storeContext
 
     const firebase = getFirebase();
     const db = getFirestore();
@@ -63,7 +63,7 @@ const Checkout = () => {
     const orden = {
         dataUsuario: usuarioData,
         productos: data.items,
-        montoTotal: precioTotal,
+        montoTotal: data.precioTotal,
         fecha: firebase.firestore.Timestamp.fromDate(new Date()),
         estado: "pendiente"
     };
@@ -238,7 +238,6 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        setPrecioTotal(data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2))
         document.title='Checkout | AlcoholizAR';
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -387,8 +386,8 @@ const Checkout = () => {
 
             </Container> :
 
-            <div className="noItems">
-                <div className="noItems__vendor">
+            <div className="checkout__noItems">
+                <div className="checkout__noItems__vendor">
                     <h3>Parece que todavía no compraste nada :( acá tenés un link directo para conocer todos nuestros productos</h3>
                     <Link to='/'>Ver todos los productos</Link>
                 </div>
