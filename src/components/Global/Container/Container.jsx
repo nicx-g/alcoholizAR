@@ -1,4 +1,4 @@
-const container = ({children}) => {
+const Container = ({children}) => {
     return (
     <div className="container">
         {children}
@@ -6,4 +6,4 @@ const container = ({children}) => {
     )
 }
 
-export default container;
+export default Container;

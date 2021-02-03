@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-const error404 = () => {
+const Error404 = () => {
     return (
         <div className="error400">
             <div className="error400__vendor">
@@ -12,4 +12,4 @@ const error404 = () => {
     )
 }
 
-export default error404;
+export default Error404;

@@ -58,7 +58,7 @@
     }
     
     &__items{
-        height: 80%;
+        height: 200px;
         overflow-y: scroll;
 
         &__noItems{
@@ -164,13 +164,13 @@
 
 @keyframes cartWidgetShow{
     from{
-        height: 0;
+        max-height: 0;
         width: 0;
         padding: 0 20px;
         transform: translate(0,-90px);
     }
     to{
-        height: 500px;
+        max-height: 350px;
         transform: translate(0, 0);
         width: 400px;
         padding: 20px;
@@ -179,13 +179,13 @@
 @keyframes cartWidgetHide{
     0%{
         display:block;
-        height: 500px;
+        max-height: 350px;
         width: 400px;
         padding: 20px;
         transform: translateY(0);
     }
     90%{
-        height: 00;
+        max-height: 00;
         transform: translateY(-90px);
         width: 0;
         padding: 0 20px;

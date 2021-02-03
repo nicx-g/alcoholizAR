@@ -1,4 +1,4 @@
-const product = ({children, className}) => {
+const ItemListContainer = ({children, className}) => {
     return (
         <div className={className}>
             {children}
@@ -6,4 +6,4 @@ const product = ({children, className}) => {
     )
 };
 
-export default product;
+export default ItemListContainer;

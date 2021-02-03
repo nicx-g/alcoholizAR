@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {StoreContext} from '../../../../store/storeContext';
 
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const CartWidget = ({showHide}) => {
 
@@ -49,7 +49,7 @@ const CartWidget = ({showHide}) => {
                 </div>
 
                 <div className="cartWidget__goToCart">
-                    <NavLink to='/cart'>Ir al carrito</NavLink>
+                    <Link to='/cart'>Ir al carrito</Link>
                 </div>
             </div>
         </div>

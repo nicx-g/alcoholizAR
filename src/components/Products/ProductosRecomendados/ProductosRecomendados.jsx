@@ -1,7 +1,7 @@
 import {getFirestore} from '../../../firebase/index';
+import {useState, useEffect} from 'react'
 
 import ItemList from '../ItemList/ItemList';
-import {useState, useEffect} from 'react'
 import Preloader from '../../Global/Preloader/Preloader';
 
 
@@ -14,7 +14,6 @@ const ProductosRecomendados = () => {
         db.collection("productos")
         .where("recomendado", "==", true).get()
         .then(data => {
-
             let arr = [];
             data.forEach(item => {
                 arr.push({

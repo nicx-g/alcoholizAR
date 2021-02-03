@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from 'react';
 
 import {StoreContext} from '../../../../store/storeContext';
 
-const CardWidget = ({showHide}) => {
+const NavCart = ({showHide}) => {
 
     const storeContext = useContext(StoreContext)
     const {data} = storeContext;
@@ -18,6 +18,11 @@ const CardWidget = ({showHide}) => {
             setDataUp("");
             setProductOnCart("");
         }, 1100)
+
+        return () => {
+            setDataUp("");
+            setProductOnCart("");
+        }
         
     }, [data])
 
@@ -32,4 +37,4 @@ const CardWidget = ({showHide}) => {
     )
 };
 
-export default CardWidget;
+export default NavCart;
