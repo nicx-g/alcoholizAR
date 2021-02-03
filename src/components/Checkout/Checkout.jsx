@@ -258,6 +258,7 @@ const Checkout = () => {
                             required 
                             type="text" 
                             name="nombre" 
+                            placeholder='Ejemplo: Pepe'
                             id="nombre"/>
                             <label htmlFor="apellido">Apellido</label>
                             <input 
@@ -267,6 +268,7 @@ const Checkout = () => {
                             required 
                             type="text" 
                             name="apellido" 
+                            placeholder='Ejemplo: Quiroga'
                             id="apellido"/>
                             <label htmlFor="dni">DNI</label>
                             <input 
@@ -276,6 +278,7 @@ const Checkout = () => {
                             required 
                             type="text" 
                             name="dni" 
+                            placeholder='Ejemplo: 41152214'
                             id="dni"/>
                             <label htmlFor="email">Email</label>
                             <input 
@@ -285,6 +288,7 @@ const Checkout = () => {
                             required 
                             type="email" 
                             name="email" 
+                            placeholder='Ejemplo: pepequiroga@email.com'
                             id="email"/>
                             <label htmlFor="telefono">Teléfono</label>
                             <input 
@@ -294,6 +298,7 @@ const Checkout = () => {
                             required 
                             type="text" 
                             name="telefono" 
+                            placeholder='Ejemplo: 1122554466'
                             id="telefono"/>
                             <button>Siguiente</button>
                             {utils.errorDatosBasicos ? 
@@ -313,6 +318,7 @@ const Checkout = () => {
                                     onBlur={handleInput}
                                     onKeyUp={handleInput}
                                     name="numeroTarjeta" 
+                                    placeholder='Ejemplo: 1111 1111 1111 1111'
                                     id="numeroTarjeta"/>
                                     <label htmlFor="nombreTitular">Nombre del titular que aparece en la tarjeta</label>
                                     <input 
@@ -321,6 +327,7 @@ const Checkout = () => {
                                     onBlur={handleInput}
                                     onKeyUp={handleInput}
                                     name="nombreTitular" 
+                                    placeholder='Ejemplo: PEPE QUIROGA'
                                     id="nombreTitular"/>
                                     <div>
                                         <div>
@@ -331,6 +338,7 @@ const Checkout = () => {
                                             onBlur={handleInput}
                                             onKeyUp={handleInput}
                                             name="fechaExp" 
+                                            placeholder='Ejemplo: 2/29'
                                             id="fechaExp"/>
                                         </div>
                                         <div>
@@ -345,6 +353,7 @@ const Checkout = () => {
                                             }}
                                             type="text" 
                                             name="codigoSeguridad" 
+                                            placeholder='Ejemplo: 789'
                                             id="codigoSeguridad"/>
                                         </div>
                                     </div>
