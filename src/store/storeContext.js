@@ -77,12 +77,6 @@ const StoreProvider = ({children}) => {
         const newProducts = data.items.filter(item => (item.id !== producto.id))
         let precioTotal = data.items.reduce((acumulador, valor) => {return acumulador + valor.item.precioTotal}, 0).toFixed(2) - (producto.item.precioTotal).toFixed(2)
 
-        setStock(() => {
-            if(data.items[posicionProducto]){
-                return (producto.item.stock - data.items[posicionProducto].item.cantidadProductos) + data.items[posicionProducto].item.cantidadProductos
-            }
-        })
-
         setData({...data,
             items: newProducts,
             cantidad: cantidadProductosTotal,

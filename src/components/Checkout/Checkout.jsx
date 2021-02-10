@@ -9,10 +9,10 @@ import Preloader from '../Global/Preloader/Preloader';
 const Checkout = () => {
     const storeContext = useContext(StoreContext)
     const {data, setData} = storeContext
-
     const firebase = getFirebase();
     const db = getFirestore();
-
+    
+    const [ordenId, setOrdenId] = useState('');
     const regexp = {
         nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/,
         apellido: /^[a-zA-ZÀ-ÿ\s]{3,40}$/,
@@ -23,7 +23,6 @@ const Checkout = () => {
         nombreTitular: /^([a-zA-Z]{2,40}\s){1,7}([a-zA-Z][^\d]{2,40}[^\s]){1}$/,
         codigoSeguridad: /^\d{3,4}$/,
     };
-
     const [camposValidados, setCamposValidados] = useState({
         nombre: false,
         apellido: false,
@@ -35,7 +34,6 @@ const Checkout = () => {
         fechaExp: false,
         codigoSeguridad: false
     });
-
     const [utils, setUtils] = useState({
         errorDatosBasicos: null,
         datosBasicosTerminado: false,
@@ -43,8 +41,8 @@ const Checkout = () => {
         errorPago: null,
         pagoTerminado: false,
         loaderPago: false,
+        rotarCard: false,
     });
-
     const [usuarioData, setUsuarioData] = useState({
         nombre: '',
         apellido: '',
@@ -52,14 +50,12 @@ const Checkout = () => {
         email: '',
         telefono: '',
     });
-
     const [infoPago, setInfoPago] = useState({
         numeroTarjeta: "xxxx xxxx xxxx xxxx",
         nombreTitular: "Inserte nombre del titular",
         fechaExp: "MM/YY",
         codigoSeguridad: "000"
     });
-
     const orden = {
         dataUsuario: usuarioData,
         productos: data.items,
@@ -68,10 +64,6 @@ const Checkout = () => {
         estado: "pendiente"
     };
 
-    const [ordenId, setOrdenId] = useState('');
-
-    const [rotarCard, setRotarCard] = useState(false);
-    
     const handleInput = (e) => {
         switch (e.target.name) {
             case "nombre":
@@ -155,7 +147,7 @@ const Checkout = () => {
         let year = hoy.getFullYear().toString().slice(2);
         let valueArray = e.target.value.split('/');
 
-        if(parseInt(valueArray[1]) === parseInt(year) && parseInt(valueArray[0]) > parseInt(mes) && parseInt(valueArray[0]) <= 12){
+        if(parseInt(valueArray[1]) === parseInt(year) && parseInt(valueArray[0]) > mes && parseInt(valueArray[0]) <= 12){
             setCamposValidados({
                 ...camposValidados,
                 [e.target.name]: true
@@ -225,7 +217,16 @@ const Checkout = () => {
 
                 setData({
                     cantidad: 0,
-                    items: []
+                    items: [],
+                    precioTotal: 0
+                })
+
+                setUsuarioData({
+                    nombre: '',
+                    apellido: '',
+                    dni: '',
+                    email: '',
+                    telefono: '',
                 })
             }, 2000)
         } else{
@@ -245,11 +246,14 @@ const Checkout = () => {
     return (
         <>
         {data.items.length >= 1 || utils.pagoTerminado === true?
-
             <Container>
                 <div className="checkout">
-                    <div className={`checkout__datosBasicosUsuario ${utils.datosBasicosTerminado ? "adios" : "hola"}`}>
-                        <form onSubmit={handleSubmitForm1} className="checkout__datosBasicosUsuario__form" method="POST">
+                    <div 
+                    className={`checkout__datosBasicosUsuario ${utils.datosBasicosTerminado ? "adios" : "hola"}`}>
+                        <form 
+                        onSubmit={handleSubmitForm1} 
+                        className="checkout__datosBasicosUsuario__form" 
+                        method="POST">
                             <label htmlFor="nombre">Nombre</label>
                             <input 
                             className={camposValidados.nombre ? "exito" : 'error'} 
@@ -307,8 +311,12 @@ const Checkout = () => {
                             }
                         </form>
                     </div>
-                    <div className={`checkout__pagoDireccionUsuario ${utils.datosBasicosTerminado ? "hola" : "hidden"} ${utils.pagoTerminado ? "hidden" : null}`}>
-                        <form onSubmit={handleSubmitForm2} className="checkout__pagoDireccionUsuario__form" method="POST">
+                    <div 
+                    className={`checkout__pagoDireccionUsuario ${utils.datosBasicosTerminado ? "hola" : "hidden"} ${utils.pagoTerminado ? "hidden" : null}`}>
+                        <form 
+                        onSubmit={handleSubmitForm2} 
+                        className="checkout__pagoDireccionUsuario__form" 
+                        method="POST">
                             <div className="checkout__pagoDireccionUsuario__form__tarjeta">
                                 <div className="checkout__pagoDireccionUsuario__form__tarjeta__campos">
                                     <label htmlFor="numeroTarjeta">Número de tarjeta</label>
@@ -346,9 +354,9 @@ const Checkout = () => {
                                             <input 
                                             className={camposValidados.codigoSeguridad ? "exito" : 'error'} 
                                             onKeyUp={handleInput}
-                                            onFocus={() => setRotarCard(true)}
+                                            onFocus={() => setUtils({...utils, rotarCard: true})}
                                             onBlur={(e) => {
-                                                setRotarCard(false)
+                                                setUtils({...utils, rotarCard: false})
                                                 handleInput(e)
                                             }}
                                             type="text" 
@@ -360,7 +368,8 @@ const Checkout = () => {
                                     <button>Confirmar compra</button>
                                 </div>
                                 <div className="checkout__pagoDireccionUsuario__form__tarjeta__imagen">
-                                    <div className={`checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente cara ${rotarCard ? 'rotado' : null}`}>
+                                    <div 
+                                    className={`checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente cara ${utils.rotarCard ? 'rotado' : null}`}>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente-numeroTarjeta">{infoPago.numeroTarjeta}</p>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente-banco">Banco</p>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente-vencimiento">{infoPago.fechaExp}</p>
@@ -368,7 +377,8 @@ const Checkout = () => {
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente-chip"></p>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__frente-titular">{infoPago.nombreTitular}</p>
                                     </div>
-                                    <div className={`checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso cara ${rotarCard ? 'rotado' : null}`}>
+                                    <div 
+                                    className={`checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso cara ${utils.rotarCard ? 'rotado' : null}`}>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso-banda"></p>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso-firma"></p>
                                         <p className="checkout__pagoDireccionUsuario__form__tarjeta__imagen__reverso-textoFirma">Firma autorizada</p>
@@ -378,12 +388,13 @@ const Checkout = () => {
                                 </div>
                             </div>
                         {utils.errorPago ? 
-                        <p className="checkout__pagoDireccionUsuario__form__error">Tenés que completar correctamente el formulario!</p> :
+                        <p className="checkout__pagoDireccionUsuario__form__error">Tenés que completar correctamente los datos de pago!</p> :
                             null
                         }
                         </form>
                     </div>
-                    <div className={`checkout__compraFinalizada ${utils.pagoTerminado ? null : "hidden"}`}>
+                    <div 
+                    className={`checkout__compraFinalizada ${utils.pagoTerminado ? null : "hidden"}`}>
                         <p className="checkout__compraFinalizada-textoPrincipal">¡Muchas gracias por tu compra! te mandaremos por email los detalles del mismo y te dejamos a continuación tu número de pedido.</p>
                         <p className="checkout__compraFinalizada-orden">Número de pedido: {ordenId}</p>
                         <Link to='/'>¡Quiero seguir comprando!</Link>
