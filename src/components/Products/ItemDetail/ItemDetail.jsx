@@ -64,7 +64,7 @@ const ItemDetail = ({props}) => {
                 <div className="itemDetail__wrapper__image">
                     <img src={`/resources/images/${props.item.foto}`} alt={props.item.descripcion}/>
                 </div>
-                {props.item.stock - cantidadProductosVendidos == 0 ? 
+                {props.item.stock - cantidadProductosVendidos === 0 ? 
                 <div className="itemDetail__wrapper__noStock">
                     <p>Sin stock :(</p>
                 </div> : 
