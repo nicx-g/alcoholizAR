@@ -20,6 +20,7 @@
         flex-direction: column;
         justify-content: space-between;
         margin: 0 40px;
+        position: relative;
         width: 50%;
 
         &__image{
@@ -29,6 +30,36 @@
 
             img{
                 width: 100%;
+            }
+        }
+
+        &__pocoStock, &__noStock{
+            left: 100px;
+            position: absolute;
+            top: 150px;
+            transform: rotate(45deg);
+
+            p{
+                background-color: rgb(255, 199, 199);
+                border: 2px solid rgb(255, 42, 42);
+                border-radius: 10px;
+                color: rgb(255, 40, 40);
+                font-size: 2rem;
+                font-weight: bold;
+                padding: 20px;
+                text-align: center;
+            }
+        }
+
+        &__pocoStock{
+            left: 60px;
+            transform: rotate(0);
+            top: 340px;
+    
+            p{
+                background-color: #fff3cd;
+                border: 2px solid #856404;
+                color:#856404
             }
         }
     

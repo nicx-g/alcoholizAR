@@ -22,7 +22,7 @@ const Category = () => {
                 arr.push(
                     {
                         id: items.id, 
-                        data: items.data()
+                        item: items.data()
                     });
             })
             setProductsArray(arr)

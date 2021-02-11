@@ -14,6 +14,9 @@ const ItemDetail = ({props}) => {
     const [btnSuccess, setBtnSuccess] = useState(false);
     const [showGoToCart, setShowGoToCart] = useState(false);
 
+    const productoActualVendido = productosVendidos ? productosVendidos.filter(item => item.id === props.id) : null
+    const cantidadProductosVendidos = productoActualVendido ? productoActualVendido.reduce((acumulador, producto) => {return acumulador + producto.item.cantidadProductos}, 0) : null
+
     const itemCountSuma = () => {
         if(cantidadProductos < stock) {
             setCantidadProductos( () => parseInt(cantidadProductos) + 6)
@@ -61,6 +64,16 @@ const ItemDetail = ({props}) => {
                 <div className="itemDetail__wrapper__image">
                     <img src={`/resources/images/${props.item.foto}`} alt={props.item.descripcion}/>
                 </div>
+                {props.item.stock - cantidadProductosVendidos == 0 ? 
+                <div className="itemDetail__wrapper__noStock">
+                    <p>Sin stock :(</p>
+                </div> : 
+                null}
+                {props.item.stock - cantidadProductosVendidos <= 24 && props.item.stock - cantidadProductosVendidos > 1 ?
+                <div className="itemDetail__wrapper__pocoStock">
+                    <p>¡Hay poco stock!</p>
+                </div>:
+                null}
                 
             </div>
             <div className="itemDetail__wrapper">
