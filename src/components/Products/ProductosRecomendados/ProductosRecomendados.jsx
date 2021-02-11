@@ -18,7 +18,7 @@ const ProductosRecomendados = () => {
             data.forEach(item => {
                 arr.push({
                     id: item.id,
-                    data: item.data()
+                    item: item.data()
                 });
             });
             setItems(arr)
